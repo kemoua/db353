@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 					{ 
 
 					?>
-					<div id="projetBox">
+					<div id="projectBox">
 
 					<?php
 
