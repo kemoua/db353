@@ -26,7 +26,7 @@ $resultClient = $conn->query($sql2);
 </head>
 <body>
 	<header>
-		<div id="header"></div>
+		<div id="header" ></div>
 		<h1>Welcome <?php echo $_SESSION["user"]; ?></h1>
 
 	</header>
@@ -47,7 +47,14 @@ $resultClient = $conn->query($sql2);
 					<?php
 
 					?><h1><?php echo $row['title']; ?></h1><?php
-					?><div id="mainPic"></div><?php
+					?><div class="mainPic"><?php
+					$file = 'images/project'. $row['project_id']. '/main.jpg';
+
+					if (!file_exists($file)) {
+					    $file = 'images/no_img.png';
+					}				
+					echo '<img src="'. $file. '"/>';
+					?></div><?php
 			 		?><div id="content">
 			 			<?php
 					 		?><p>Actual Cost: <?php echo $row['actual_cost'];?></p><?php 
@@ -75,7 +82,14 @@ $resultClient = $conn->query($sql2);
 					<?php
 
 					?><h1><?php echo $rowClient['title']; ?></h1><?php
-					?><div id="mainPic"></div><?php
+					?><div class="mainPic"><?php
+					$file = 'images/project'. $rowClient['project_id']. '/main.jpg';
+
+					if (!file_exists($file)) {
+					    $file = 'images/no_img.png';
+					}				
+					echo '<img src="'. $file. '"/>';
+					?></div><?php
 			 		?><div id="content">
 			 			<?php
 					 		?><p>Actual Cost: <?php echo $rowClient['actual_cost'];?></p><?php 
