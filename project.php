@@ -40,7 +40,16 @@ $result = $conn->query($sql);
 					<?php
 
 					?><h1><?php echo $row['title']; ?></h1><?php
-					?><div class="mainPic"></div><?php
+					?><div class="mainPic">	
+
+					<?php
+					$file = 'images/project'. $row['project_id']. '/main.jpg';
+
+					if (!file_exists($file)) {
+					    $file = 'images/no_img.png';
+					}				
+					echo '<img src="'. $file. '"/>'; 
+
 			 		?><div id="content">
 			 			<div id="row<?php echo $row['project_id'];?>">
 			 			<?php
