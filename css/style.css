@@ -1,0 +1,69 @@
+.header{
+	text-align: center;
+	min-height: 20px;
+	background-color: silver;
+}
+
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.col {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+  border: solid;
+}
+
+table {
+    width: 100%;
+    background-color: silver;
+    color: black;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+th {text-align: left;}
+
+.edit_button{
+	width: 50px;
+	float: left;
+}
+.save_button{
+	display: none;
+	width: 50px;
+	float: left;
+}
+.delete_button{
+	width: 50px;
+	float: left;
+}
+
+body{
+	background-image: none;
+}
+#loginBox{
+	padding:50px;
+	border-radius: 25px;
+	margin: auto; 
+	background-color: pink;
+	height:400px;
+	width: 400px;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+
+
+
