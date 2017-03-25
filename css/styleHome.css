@@ -33,10 +33,13 @@ header{
 header h1{
 	float:right;
 }
+header button{
+	float: right;
+}
 #wrapper{   
 	margin: 0 auto;  
 	height: 700px;
-	overflow: scroll;
+	/*overflow: scroll;*/
 } 
 #projectBox{    
 	margin: 40 auto;

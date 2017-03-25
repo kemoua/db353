@@ -28,6 +28,7 @@ $resultClient = $conn->query($sql2);
 	<header>
 		<div id="header" ></div>
 		<h1>Welcome <?php echo $_SESSION["user"]; ?></h1>
+		<button onclick="window.location = 'index.php';">Logout</button>
 
 	</header>
 

@@ -26,6 +26,7 @@ $result = $conn->query($sql);
 	<header> 
 	<div id="logo" onclick="window.location = 'home.php';"></div>
 		<h1>Project <?php echo $_GET["projectid"]; ?></title>
+		<button onclick="window.location = 'index.php';">Logout</button>
 	</header>
 
 	<div id="wrapper">
