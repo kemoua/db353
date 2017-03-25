@@ -31,8 +31,6 @@ $resultClient = $conn->query($sql2);
 
 	</header>
 
-
-
 	<div id="wrapper">
 		<h1>Projects</h1>
 
