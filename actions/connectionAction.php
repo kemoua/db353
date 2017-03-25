@@ -7,7 +7,7 @@ if (isset($_POST["member-conn"])){
 
 		$servername = "localhost";
 		$username = "root";
-		$password = "";
+		$password = "root";
 		$dbname = "comp353"; 
 
 		// Create connection

@@ -3,7 +3,7 @@
  
 $servername="localhost";
 $username="root";
-$password="";
+$password="root";
 $dbname="comp353";
 
 //query for admin
