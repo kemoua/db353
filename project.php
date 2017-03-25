@@ -24,6 +24,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 	<header> 
+	<div id="logo" onclick="window.location = 'home.php';"></div>
 		<h1>Project <?php echo $_GET["projectid"]; ?></title>
 	</header>
 
@@ -59,6 +60,7 @@ $result = $conn->query($sql);
 						}
 					?></div>
 					</div>
+					<!-- Test queries response -->
 					<input type="text" id="result">
 					<?php
 			  	 	
