@@ -24,9 +24,25 @@ $resultClient = $conn->query($sql2);
 	<link rel="stylesheet" href="css/styleHome.css">
 	<title>Welcome to Damavand!</title>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 100) { 
+            $('#scroll').fadeIn(); 
+        } else { 
+            $('#scroll').fadeOut(); 
+        } 
+    }); 
+    $('#scroll').click(function(){ 
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
+});
+</script>
 </head>
 <body>
+<a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header>
 		<div id="logo" ></div>
 	</header>
@@ -34,7 +50,7 @@ $resultClient = $conn->query($sql2);
 		<ul id="menu">
 		        <li><a href="#">Home</a></li>
 		        <li>
-		                <a href="#" style="background-color: green;">Project</a>
+		                <a href="#">Project</a>
 		                <ul>
 		                        <li><a href="#">List</a>
 								<ul>
@@ -161,5 +177,9 @@ $resultClient = $conn->query($sql2);
 	<?php
 	$conn->close();
 	?> 
+	
+
 </body>
+
+
 </html>

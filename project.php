@@ -20,16 +20,32 @@ $result = $conn->query($sql);
 	<link rel="stylesheet" href="css/styleProject.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/modify_records.js"></script>
+	<script type='text/javascript'>
+	$(document).ready(function(){ 
+	    $(window).scroll(function(){ 
+	        if ($(this).scrollTop() > 100) { 
+	            $('#scroll').fadeIn(); 
+	        } else { 
+	            $('#scroll').fadeOut(); 
+	        } 
+	    }); 
+	    $('#scroll').click(function(){ 
+	        $("html, body").animate({ scrollTop: 0 }, 600); 
+	        return false; 
+	    }); 
+	});
+	</script>
 	<title>Project <?php echo $_GET["projectid"]; ?></title>
 </head>
 <body>
+<a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header> 
 	<div id="logo" onclick="window.location = 'home.php';"></div>
 		<!-- <button class="logout" onclick="window.location = 'index.php';">Logout</button> -->
 	</header>
 	
 		<ul id="menu">
-		        <li><a href="#">Home</a></li>
+		        <li><a href="home.php">Home</a></li>
 		        <li>
 		                <a href="home.php">Project</a>
 		                <ul>
@@ -38,7 +54,7 @@ $result = $conn->query($sql);
 									<?php  
 										$conn2 = new mysqli($servername, $username, $password, $dbname); 
 										$sql1 = "SELECT * FROM project";
-										$result2 = $conn2->query($sql);
+										$result2 = $conn2->query($sql1);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
 										$sql2 = "SELECT * FROM project,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
@@ -76,6 +92,7 @@ $result = $conn->query($sql);
 		</ul>
 
 	<div id="wrapper">
+	
 		<?php  
 					while ($row=mysqli_fetch_array($result)) 
 					{ 
@@ -111,7 +128,7 @@ $result = $conn->query($sql);
 						if($_SESSION['privilege'] == 'A'){
 							?>
 					   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" value="edit" onclick="edit_row('<?php echo $row['project_id'];?>');">
-					   <input type='button' class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
+					   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
 						<?php
 						}
 					?></div>
