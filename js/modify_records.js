@@ -1,41 +1,41 @@
 function edit_row(id)
 {
- // var project_id=document.getElementById("project_id_val"+id).innerHTML;
- var status=document.getElementById("status_val"+id).innerHTML;
- var start_date=document.getElementById("start_date_val"+id).innerHTML;
- var actual_cost=document.getElementById("actual_cost_val"+id).innerHTML;
- // document.getElementById("project_id_val"+id).innerHTML="<input type='text' id='project_id_text"+id+"' value='"+project_id+"'>";
- // document.getElementById("status_val"+id).innerHTML="<input type='text' id='status_text"+id+"' value='"+status+"'>";
- // var list = document.getElementById("status_val"+id);
- // var newOp = document.createElement("option");
+   // var project_id=document.getElementById("project_id_val"+id).innerHTML;
+   var status=document.getElementById("status_val"+id).innerHTML;
+   var start_date=document.getElementById("start_date_val"+id).innerHTML;
+   var actual_cost=document.getElementById("actual_cost_val"+id).innerHTML;
+   // document.getElementById("project_id_val"+id).innerHTML="<input type='text' id='project_id_text"+id+"' value='"+project_id+"'>";
+   // document.getElementById("status_val"+id).innerHTML="<input type='text' id='status_text"+id+"' value='"+status+"'>";
+   // var list = document.getElementById("status_val"+id);
+   // var newOp = document.createElement("option");
 
- document.getElementById("actual_cost_val"+id).innerHTML='<input type="number" step="0.01" id="actual_cost_text'+id+'" value="'+actual_cost+'">';
- document.getElementById("status_val"+id).innerHTML="<select id='status_text"+id+"'></select>";
- var x = document.createElement("OPTION");
- x.setAttribute("value", "Analysis");
- var t = document.createTextNode("Analysis");
- x.appendChild(t);
- document.getElementById("status_text"+id).appendChild(x);
- x = document.createElement("OPTION"); 
-  x.setAttribute("value", "In progress");
- t = document.createTextNode("In progress");
- x.appendChild(t);
- document.getElementById("status_text"+id).appendChild(x);
- x = document.createElement("OPTION"); 
-  x.setAttribute("value", "Completed");
- t = document.createTextNode("Completed");
- x.appendChild(t);
- document.getElementById("status_text"+id).appendChild(x);
- x = document.createElement("OPTION"); 
-  x.setAttribute("value", "Cancelled");
- t = document.createTextNode("Cancelled");
- x.appendChild(t);
- document.getElementById("status_text"+id).appendChild(x); 
+   document.getElementById("actual_cost_val"+id).innerHTML='<input type="number" step="0.01" id="actual_cost_text'+id+'" value="'+actual_cost+'">';
+   document.getElementById("status_val"+id).innerHTML="<select id='status_text"+id+"'></select>";
+   var x = document.createElement("OPTION");
+   x.setAttribute("value", "Analysis");
+   var t = document.createTextNode("Analysis");
+   x.appendChild(t);
+   document.getElementById("status_text"+id).appendChild(x);
+   x = document.createElement("OPTION"); 
+    x.setAttribute("value", "In progress");
+   t = document.createTextNode("In progress");
+   x.appendChild(t);
+   document.getElementById("status_text"+id).appendChild(x);
+   x = document.createElement("OPTION"); 
+    x.setAttribute("value", "Completed");
+   t = document.createTextNode("Completed");
+   x.appendChild(t);
+   document.getElementById("status_text"+id).appendChild(x);
+   x = document.createElement("OPTION"); 
+    x.setAttribute("value", "Cancelled");
+   t = document.createTextNode("Cancelled");
+   x.appendChild(t);
+   document.getElementById("status_text"+id).appendChild(x); 
 
- document.getElementById("start_date_val"+id).innerHTML='<input type="date" id="start_date_text'+id+'" value="'+start_date+'">';
+   document.getElementById("start_date_val"+id).innerHTML='<input type="date" id="start_date_text'+id+'" value="'+start_date+'">';
 
- document.getElementById("edit_button"+id).style.display="none";
- document.getElementById("save_button"+id).style.display="block";
+   document.getElementById("edit_button"+id).style.display="none";
+   document.getElementById("save_button"+id).style.display="block";
 }
 
 function save_row(id)

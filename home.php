@@ -23,14 +23,61 @@ $resultClient = $conn->query($sql2);
 <head>
 	<link rel="stylesheet" href="css/styleHome.css">
 	<title>Welcome to Damavand!</title>
+
+
 </head>
 <body>
 	<header>
-		<div id="header" ></div>
-		<h1>Welcome <?php echo $_SESSION["user"]; ?></h1>
-		<button onclick="window.location = 'index.php';">Logout</button>
-
+		<div id="logo" ></div>
 	</header>
+
+		<ul id="menu">
+		        <li><a href="#">Home</a></li>
+		        <li>
+		                <a href="#" style="background-color: green;">Project</a>
+		                <ul>
+		                        <li><a href="#">List</a>
+								<ul>
+									<?php  
+										if($_SESSION['privilege'] == 'A'){
+											while ($row=mysqli_fetch_array($result)) 
+											{ 
+									?>
+												<li><a href="project.php?projectid=<?php echo $row['project_id']; ?>"><?php echo $row['title'];?></a></li>
+											<?php
+										  	
+											}  
+											}else{  // if user is a client , he will only be able to see his own projects
+												while ($rowClient=mysqli_fetch_array($resultClient)) 
+												{ 
+												?>
+													<li><a href="project.php?projectid=<?php echo $rowClient['project_id']; ?>"><?php echo $rowClient['title'];?></a></li>
+
+												<?php
+												}  
+											}
+											?>
+									<?php
+										$conn->close();
+										$conn = new mysqli($servername, $username, $password, $dbname); 
+										$sql = "SELECT * FROM project";
+										$result = $conn->query($sql);
+										//query for users with no admin privileges
+										$user = $_SESSION['user'];
+										$sql2 = "SELECT * FROM project,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+										$resultClient = $conn->query($sql2);
+									?> 
+
+								</ul>
+		                        </li>
+		                        <li><a href="#">Create</a></li>
+		                </ul>
+		        </li>
+		        <li><a href="#">About</a></li>
+		        <li><a href="#">Contact</a></li>
+		        <li><a href="index.php">Logout</a></li>
+		</ul>
+	
 
 	<div id="wrapper">
 		<h1>Projects</h1>
