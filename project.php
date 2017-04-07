@@ -57,7 +57,7 @@ $result = $conn->query($sql);
 										$result2 = $conn2->query($sql1);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+										$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' ";
 										$resultClient = $conn2->query($sql2);
 										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result2)) 
