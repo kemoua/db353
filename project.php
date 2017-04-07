@@ -94,54 +94,70 @@ $result = $conn->query($sql);
 	<div id="wrapper">
 	
 		<?php  
-					while ($row=mysqli_fetch_array($result)) 
-					{ 
+				while ($row=mysqli_fetch_array($result)) 
+				{ 
 
-					?>
-					<div id="projectBox">
+				?>
+				<div id="projectBox">
 
-					<?php
+				<a href="phases.php?projectid=<?php echo $_GET["projectid"] ?>">Phases
+				<img border="0" src="images/hammer.png" width="80" height="80">
+				</a>
 
-					?><h1><?php echo $row['title']; ?></h1><?php
-					?><div class="mainPic">	
 
-					<?php
-					$file = 'images/project'. $row['project_id']. '/main.jpg';
+				<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>">Tasks
+				<img border="0" src="images/task.png" width="80" height="80">
+				</a>
 
-					if (!file_exists($file)) {
-					    $file = 'images/no_img.png';
-					}				
-					echo '<img src="'. $file. '"/>'; 
 
-			 		?><div id="content">
-			 			<div id="row<?php echo $row['project_id'];?>">
-			 			<?php
-					 		?>Actual Cost: <label id="actual_cost_val<?php echo $row['project_id'];?>"><?php echo $row['actual_cost'];?></label><br><?php 
-					 		?>Status: <label id="status_val<?php echo $row['project_id'];?>"><?php echo $row['status'];?></span></label><br><?php 
-					 		?>Type: <label id="type_val<?php echo $row['project_id'];?>"><?php echo $row['type'];?></label><br><?php 
-							?>Start Date: <label id="start_date_val<?php echo $row['project_id'];?>"><?php echo $row['start_date'];?></label><br><?php 
-			 			?>
+				<a href="settings.php?projectid=<?php echo $_GET["projectid"] ?>">Settings
+				<img border="0" alt="" src="images/settings.png" width="80" height="80">
+				</a>
 
-			 		</div>
-			 		</div><?php	 
-					?><div class="action_btns"><?php
-						if($_SESSION['privilege'] == 'Company'){
-							?>
-					   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" value="edit" onclick="edit_row('<?php echo $row['project_id'];?>');">
-					   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
-						<?php
-						}
-					?></div>
+				<?php
+
+				?><h1><?php echo $row['title']; ?></h1><?php
+				?><div class="mainPic">	
+
+				<?php
+				$file = 'images/project'. $row['project_id']. '/main.jpg';
+
+				if (!file_exists($file)) {
+				    $file = 'images/no_img.png';
+				}				
+				echo '<img src="'. $file. '"/>'; 
+
+		 		?><div id="content">
+		 			<div id="row<?php echo $row['project_id'];?>">
+		 			<?php
+				 		?>Actual Cost: <label id="actual_cost_val<?php echo $row['project_id'];?>"><?php echo $row['actual_cost'];?></label><br><?php 
+				 		?>Status: <label id="status_val<?php echo $row['project_id'];?>"><?php echo $row['status'];?></span></label><br><?php 
+				 		?>Type: <label id="type_val<?php echo $row['project_id'];?>"><?php echo $row['type'];?></label><br><?php 
+						?>Start Date: <label id="start_date_val<?php echo $row['project_id'];?>"><?php echo $row['start_date'];?></label><br><?php 
+		 			?>
+						<div class="action_btns">
+						<?php	 
+							if($_SESSION['privilege'] == 'Company'){
+						?>
+						   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" value="edit" onclick="edit_row('<?php echo $row['project_id'];?>');">
+						   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
+						<?php } ?>
+						</div>	
+				 	</div> 
+
+				</div>
 					</div>
 					<!-- Test queries response -->
 					<input type="hidden" id="result">
 					<?php
 			  	 	
-					}  
+				}  
 		?>
 		</div>
-	<?php
-	$conn->close();
-	?> 
+
+	</div>
+		<?php
+		$conn->close();
+		?> 
 </body>
 </html>
