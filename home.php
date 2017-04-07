@@ -1,9 +1,5 @@
 <?php
-	session_start();
-
-	echo $_SESSION["user"];
-	echo $_SESSION["password"];
- 	echo $_SESSION["privilege"];
+	session_start(); 
 
 $servername="localhost";
 $username="root";
