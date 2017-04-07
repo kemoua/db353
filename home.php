@@ -54,8 +54,7 @@ $(document).ready(function(){
 		                <ul>
 		                        <li><a href="#">List</a>
 								<ul>
-									<?php  
-										echo "SDFsf";
+									<?php   
 										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result)) 
 											{ 
