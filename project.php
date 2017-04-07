@@ -59,7 +59,7 @@ $result = $conn->query($sql);
 										$user = $_SESSION['user'];
 										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
 										$resultClient = $conn2->query($sql2);
-										if($_SESSION['privilege'] == 'A'){
+										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result2)) 
 											{ 
 									?>
@@ -125,7 +125,7 @@ $result = $conn->query($sql);
 			 		</div>
 			 		</div><?php	 
 					?><div class="action_btns"><?php
-						if($_SESSION['privilege'] == 'A'){
+						if($_SESSION['privilege'] == 'Company'){
 							?>
 					   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" value="edit" onclick="edit_row('<?php echo $row['project_id'];?>');">
 					   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
