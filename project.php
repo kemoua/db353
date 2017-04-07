@@ -9,7 +9,7 @@ $dbname="comp353";
 $projectid = $_GET["projectid"];
 
 $conn = new mysqli($servername, $username, $password, $dbname); 
-$sql = "SELECT * FROM project WHERE project_id = '$projectid' ";
+$sql = "SELECT * FROM projects WHERE project_id = '$projectid' ";
 $result = $conn->query($sql);
 
  
@@ -53,11 +53,11 @@ $result = $conn->query($sql);
 								<ul>
 									<?php  
 										$conn2 = new mysqli($servername, $username, $password, $dbname); 
-										$sql1 = "SELECT * FROM project";
+										$sql1 = "SELECT * FROM projects";
 										$result2 = $conn2->query($sql1);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM project,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
 										$resultClient = $conn2->query($sql2);
 										if($_SESSION['privilege'] == 'A'){
 											while ($row=mysqli_fetch_array($result2)) 

@@ -1,6 +1,10 @@
 <?php
 	session_start();
- 
+
+	echo $_SESSION["user"];
+	echo $_SESSION["password"];
+ 	echo $_SESSION["privilege"];
+
 $servername="localhost";
 $username="root";
 $password="root";
@@ -8,13 +12,13 @@ $dbname="comp353";
 
 //query for admin
 $conn = new mysqli($servername, $username, $password, $dbname); 
-$sql = "SELECT * FROM project";
+$sql = "SELECT * FROM projects";
 $result = $conn->query($sql);
 
 
 //query for users with no admin privileges
 $user = $_SESSION['user'];
-$sql2 = "SELECT * FROM project,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
 $resultClient = $conn->query($sql2);
 
 ?>
@@ -55,7 +59,8 @@ $(document).ready(function(){
 		                        <li><a href="#">List</a>
 								<ul>
 									<?php  
-										if($_SESSION['privilege'] == 'A'){
+										echo "SDFsf";
+										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result)) 
 											{ 
 									?>
@@ -63,7 +68,7 @@ $(document).ready(function(){
 											<?php
 										  	
 											}  
-											}else{  // if user is a client , he will only be able to see his own projects
+										}else{  // if user is a client , he will only be able to see his own projects
 												while ($rowClient=mysqli_fetch_array($resultClient)) 
 												{ 
 												?>
@@ -71,16 +76,16 @@ $(document).ready(function(){
 
 												<?php
 												}  
-											}
+										}
 											?>
 									<?php
 										$conn->close();
 										$conn = new mysqli($servername, $username, $password, $dbname); 
-										$sql = "SELECT * FROM project";
+										$sql = "SELECT * FROM projects";
 										$result = $conn->query($sql);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM project,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
 										$resultClient = $conn->query($sql2);
 									?> 
 
@@ -100,7 +105,7 @@ $(document).ready(function(){
 
 
 		<?php  
-				if($_SESSION['privilege'] == 'A'){
+				if($_SESSION['privilege'] == 'Company'){
 
 					while ($row=mysqli_fetch_array($result)) 
 					{ 

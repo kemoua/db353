@@ -1,6 +1,5 @@
 <?php 
-
-session_start();
+	session_start();
 
 if (isset($_POST["member-conn"])){
 	if(!empty($_POST["uname"]and !empty($_POST["passw"]))){
@@ -13,17 +12,19 @@ if (isset($_POST["member-conn"])){
 		// Create connection
 		$conn = new mysqli($servername, $username, $password, $dbname);
 		// Check connection
-		if ($conn->connect_errono > 0) { 
-		    die("Connection failed: " . $conn->connect_error);
+		if (!$conn) { 
+		    die("Connection failed: " );
 		}   
 
-		$table = "user";
+		$table = "users";
 		$user = $_POST["uname"];
 		$password = sha1($_POST["passw"]); 
 
 		$sql = "SELECT * FROM $table WHERE username = '$user' AND password = '$password'";
 
-		$result = $conn->query($sql);
+		$result = $conn->query($sql) or die($conn->error);
+
+
 		$row = $result->fetch_assoc();
 
 		//if it returns data
@@ -31,7 +32,7 @@ if (isset($_POST["member-conn"])){
 			//if here it means the user successfully logged in
 			$_SESSION["user"] = $user;
 			$_SESSION["password"]= $password;  
-			$_SESSION["privilege"] =$row["privilege"];
+			$_SESSION["privilege"] =$row["privilege"];  
 			
 			header('location:../home.php');
 			// header should be the first thing you do. if you output anythin
@@ -42,6 +43,7 @@ if (isset($_POST["member-conn"])){
 		else{ 
 			//user needs to try again
 			header('location:../index.php');
+			session_destroy();
 			exit();
 		}
 	}
