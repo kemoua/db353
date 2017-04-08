@@ -95,6 +95,16 @@ $result = $conn->query($sql);
 		</ul>
 
 	<div id="wrapper">
+		<div id="buttonSection">
+			<a href="phases.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/phases_1.png" width="149" height="50" onmouseover="this.src='images/phases_1_2.png';" onmouseout="this.src='images/phases_1.png';" /></a>
+
+
+			<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/tasks_1.png" width="149" height="50" onmouseover="this.src='images/tasks_1_2.png';" onmouseout="this.src='images/tasks_1.png';" />
+			</a>
+
+			<a href="billing.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/billing_1.png" width="149" height="50" onmouseover="this.src='images/billing_1_2.png';" onmouseout="this.src='images/billing_1.png';" />
+			</a>						
+		</div>
 	
 		<?php  
 				while ($row=mysqli_fetch_array($result)) 
@@ -102,20 +112,10 @@ $result = $conn->query($sql);
 
 				?>
 				<div id="projectBoxBig">
-					<div id="buttonSection">
-						<a href="phases.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/hammer.png" width="80" height="80">
-						</a>
 
-
-						<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/task.png" width="80" height="80">
-						</a>
-
-						<a href="billing.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/billing.png" width="80" height="80">
-						</a>						
-					</div>
 				<?php
 
-				?><h1><?php echo $row['title']; ?></h1><?php
+				?><h1><?php echo strtoupper($row['title']); ?></h1><?php
 				?><div class="project_main_pic">	
 
 				<?php
@@ -126,23 +126,27 @@ $result = $conn->query($sql);
 				}				
 				echo '<img src="'. $file. '"/>'; 
 
-		 		?><div id="content">
-		 			<div id="row<?php echo $row['project_id'];?>">
+		 		?><div id="contentBigBox"> 
 		 			<?php
-				 		?>Actual Cost: <label id="actual_cost_val<?php echo $row['project_id'];?>"><?php echo $row['actual_cost'];?></label><br><?php 
-				 		?>Status: <label id="status_val<?php echo $row['project_id'];?>"><?php echo $row['status'];?></span></label><br><?php 
-				 		?>Type: <label id="type_val<?php echo $row['project_id'];?>"><?php echo $row['type'];?></label><br><?php 
-						?>Start Date: <label id="start_date_val<?php echo $row['project_id'];?>"><?php echo $row['start_date'];?></label><br><?php 
+		 				//rajout de lignes 
+				 		?><b>Project #: </b><label></label></br><?php 
+				 		?><b>Client ID: </b><label></label></br><?php 
+				 		?><b>Budget: </b><label></label><br><?php
+				 		?><b>Actual Cost: </b><label id="actual_cost_val<?php echo $row['project_id'];?>"><?php echo $row['actual_cost'];?></label><br><?php 
+				 		?><b>Status: </b><label id="status_val<?php echo $row['project_id'];?>"><?php echo $row['status'];?></span></label><br><?php 
+				 		?><b>Type: </b><label id="type_val<?php echo $row['project_id'];?>"><?php echo $row['type'];?></label><br><?php 
+						?><b>Time Needed : </b><label></label></br><?php
+						?><b>Start Date: </b><label id="start_date_val<?php echo $row['project_id'];?>"><?php echo $row['start_date'];?></label><br><?php 
+		 				?><b>Complete Date: </b><label></label></br><?php
 		 			?>
 						<div class="action_btns">
 						<?php	 
 							if($_SESSION['privilege'] == 'Company'){
 						?>
-						   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" value="edit" onclick="edit_row('<?php echo $row['project_id'];?>');">
-						   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
+						   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_row('<?php echo $row['project_id'];?>');">
+						   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_row('<?php echo $row['project_id'];?>');">	
 						<?php } ?>
 						</div>	
-				 	</div> 
 
 				</div>
 					</div>

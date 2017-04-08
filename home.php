@@ -140,7 +140,7 @@ $(document).ready(function(){
 
 					<?php
 
-					?><h1><?php echo $row['title']; ?></h1><?php
+					?><h1><?php echo strtoupper($row['title']);?></h1><?php
 					?><div class="mainPic"><?php
 					$file = 'images/project'. $row['project_id']. '/main.jpg';
 
@@ -151,10 +151,11 @@ $(document).ready(function(){
 					?></div><?php
 			 		?><div id="content">
 			 			<?php
-					 		?><p>Actual Cost: <?php echo $row['actual_cost'];?></p><?php 
-					 		?><p>Status: <?php echo $row['status'];?></p><?php 
-					 		?><p>Type: <?php echo $row['type'];?></p><?php 
-							?><p>Start Date: <?php echo $row['start_date'];?></p><?php 
+							?><p><b>Project#:</b> <?php echo $row['project_id'];?></p><?php 
+					 		?><p><b>Actual Cost:</b> <?php echo $row['actual_cost'];?>$</p><?php 
+					 		?><p><b>Status:</b> <?php echo $row['status'];?></p><?php 
+					 		?><p><b>Type:</b> <?php echo $row['type'];?></p><?php 
+							?><p><b>Start Date:</b> <?php echo $row['start_date'];?></p><?php 
 			 			?>
 
 			 		</div><?php	
@@ -186,15 +187,16 @@ $(document).ready(function(){
 					?></div><?php
 			 		?><div id="content">
 			 			<?php
-					 		?><p>Actual Cost: <?php echo $rowClient['actual_cost'];?></p><?php 
-					 		?><p>Status: <?php echo $rowClient['status'];?></p><?php 
-					 		?><p>Type: <?php echo $rowClient['type'];?></p><?php 
-							?><p>Start Date: <?php echo $rowClient['start_date'];?></p><?php 
+							?><p><b>Project#:</b> <?php echo $rowClient['project_id'];?></p><?php 
+					 		?><p><b>Actual Cost:</b> <?php echo $rowClient['actual_cost'];?></p><?php 
+					 		?><p><b>Status:</b> <?php echo $rowClient['status'];?></p><?php 
+					 		?><p><b>Type:</b> <?php echo $rowClient['type'];?></p><?php 
+							?><p><b>Start Date:</b> <?php echo $rowClient['start_date'];?></p><?php 
 			 			?>
 
 			 		</div><?php	
 
-			 		?><input type="button" class="infosButton" onclick="window.location='project.php?projectid=<?php echo $rowClient['project_id']; ?>';" /><?php
+			 		?><input type="image" class="infosButton" onclick="window.location='project.php?projectid=<?php echo $rowClient['project_id']; ?>';" /><?php
 
 					?>
 					</div>
