@@ -106,27 +106,29 @@ function save_project(id)
  });
 }
 
-// function delete_row(id)
-// {
-//  $.ajax
-//  ({
-//   type:'post',
-//   url:'modify_records.php',
-//   data:{
-//    delete_row:'delete_row',
-//    row_id:id,
-//   },
-//   success:function(response) {
-//     document.getElementById("result").value=response;
-//    if(response=="success")
-//    {
-//     var row=document.getElementById("row"+id);
-//     row.parentNode.removeChild(row);
-//    }
-//   }
+function delete_project(id)
+{
+  if(confirm("Do you really want to delete this project?")){
+ $.ajax
+ ({
+  type:'post',
+  url:'modify_records.php',
+  data:{
+   delete_project:'delete_project',
+   project_id:id,
+  },
+  success:function(response) {
+   if(response=="success")
+   {
+    // var row=document.getElementById("row"+id);
+    // row.parentNode.removeChild(row);
+    window.location.href = "home.php";
+   }
+  }
 
-//  });
-// }
+ });
+ }
+}
 
 function create_project()
 {

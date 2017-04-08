@@ -103,7 +103,10 @@ $result = $conn->query($sql);
 			</a>
 
 			<a href="billing.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/billing_1.png" width="149" height="50" onmouseover="this.src='images/billing_1_2.png';" onmouseout="this.src='images/billing_1.png';" />
-			</a>						
+			</a>
+
+			<button onclick="delete_project('<?php echo $_GET['projectid'];?>');">DELETE</button>
+
 		</div>
 	
 		<?php  

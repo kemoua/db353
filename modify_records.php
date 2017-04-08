@@ -32,10 +32,10 @@ if(isset($_POST['edit_project']))
  exit();
 }
 
-if(isset($_POST['delete_row']))
+if(isset($_POST['delete_project']))
 {
- $row_no=$_POST['row_id'];
- $sql = "DELETE FROM projects WHERE project_id = '$row_no'";
+ $project_no=$_POST['project_id'];
+ $sql = "DELETE FROM projects WHERE project_id = '$project_no'";
 
  if ($conn->query($sql) === TRUE) {
     echo "success";
