@@ -17,8 +17,8 @@ body{
 	overflow-x:hidden;
 	background-repeat: no-repeat;    
     margin-bottom:100px;
-    background-image: url(../images/bricks.jpg);  
     background-repeat: repeat;
+    background-color: grey;
 }
 header{
 	background-image: url(../images/b_2.jpg);  
