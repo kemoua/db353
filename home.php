@@ -95,11 +95,9 @@ $(document).ready(function(){
 		        <li><a href="#">About</a></li>
 		        <li><a href="#">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
-		</ul>
-	
+		</ul> 
 
 	<div id="wrapper">
-		<h1>Projects</h1>
 
 
 		<?php  

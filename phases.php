@@ -12,7 +12,7 @@ $projectid = $_GET["projectid"];
 
 <html>
 <head>
-	<link rel="stylesheet" href="css/stylePhase.css">
+	<link rel="stylesheet" href="css/styleHome.css">
 	<title>PHASES</title>
 </head>
 <body>

@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 
 <html>
 <head>
-	<link rel="stylesheet" href="css/styleProject.css">
+	<link rel="stylesheet" href="css/styleHome.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/modify_records.js"></script>
 	<script type='text/javascript'>
@@ -101,26 +101,27 @@ $result = $conn->query($sql);
 				{ 
 
 				?>
-				<div id="projectBox">
-
-				<a href="phases.php?projectid=<?php echo $_GET["projectid"] ?>">Phases
-				<img border="0" src="images/hammer.png" width="80" height="80">
-				</a>
-
-
-				<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>">Tasks
-				<img border="0" src="images/task.png" width="80" height="80">
-				</a>
+				<div id="projectBoxBig">
+					<div id="buttonSection">
+						<a href="phases.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/hammer.png" width="80" height="80">
+						</a>
 
 
-				<a href="settings.php?projectid=<?php echo $_GET["projectid"] ?>">Settings
-				<img border="0" alt="" src="images/settings.png" width="80" height="80">
-				</a>
+						<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/task.png" width="80" height="80">
+						</a>
 
+
+						<a href="settings.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/settings.png" width="80" height="80">
+						</a>
+
+
+						<a href="billing.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/billing.png" width="80" height="80">
+						</a>						
+					</div>
 				<?php
 
 				?><h1><?php echo $row['title']; ?></h1><?php
-				?><div class="mainPic">	
+				?><div class="project_main_pic">	
 
 				<?php
 				$file = 'images/project'. $row['project_id']. '/main.jpg';

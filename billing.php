@@ -13,7 +13,7 @@ $projectid = $_GET["projectid"];
 <html>
 <head>
 	<link rel="stylesheet" href="css/styleHome.css">
-	<title>PHASES</title>
+	<title>Billing</title>
 </head>
 <body>
 	<header> 
@@ -68,7 +68,7 @@ $projectid = $_GET["projectid"];
 		</ul>
 		<div id="wrapper">
 			<div id="projectBox">
-				<h1>je veux des taches</h1>
+				<h1>je veux des billing</h1>
 			</div>
 		</div>
 </body>
