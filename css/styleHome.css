@@ -96,6 +96,18 @@ header button{
     font-weight: 800;
     font-size: 22px;       
 }
+#projectBoxPhases label{
+    clear: both;
+    float:left;
+    position: relative;
+    top:45px;
+}
+#projectBoxPhases input{ 
+    float:right;
+    position: relative;
+    right:500px;
+    top:50px;
+}
 #content{
     margin-top:0px;
 }
@@ -368,4 +380,19 @@ header button{
 #buttonSection{
     float:right;  
     margin-bottom: 50px; 
+} 
+.back{
+    float:left;
+    position:relative;
+    left:20px;
+    margin-bottom:20px; 
+}
+.add{   
+    float: right;
+    position: relative;
+    margin-bottom: 20px;
+    right: 20px;
+}
+#newPhase{
+    display: none;
 }

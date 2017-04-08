@@ -33,7 +33,7 @@ $projectid = $_GET["projectid"];
 										$result2 = $conn2->query($sql1);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = client.client_id AND client.username ='$user' ";
+										$sql2 = "SELECT * FROM projects,client WHERE project.client_id = clients.client_id AND clients.username ='$user' ";
 										$resultClient = $conn2->query($sql2);
 										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result2)) 
@@ -66,13 +66,49 @@ $projectid = $_GET["projectid"];
 		        <li><a href="#">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
-
+		<script>
+			function displayBox() {
+			    div = document.getElementById('newPhase');
+			    div.style.display = "block";
+			}
+		</script>
 		<div id="wrapper"> 
 					<h1>Phases for the project : <?php echo $projectid;?></h1>
-					<?php 
+
+					<a class='back' href="project.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/arrow.png" width="80" height="80">
+					</a>
+
+					 <?php  
+						if($_SESSION['privilege'] == 'Company'){
+							?><a class='add' href="javascript:displayBox();"><img border="0" src="images/add.png" width="80" height="80">
+							</a>
+							<?php
+						}
+					?>
+
+					<div id="newPhase">
+						<div id="projectBoxPhases">
+							<form action="">
+								<label>Phase ID</label><input type="text" name="phase_id">
+								<label>Status</label><input type="text" name="status">
+								<label>Start Date</label><input type="text" name="start_date">
+								<label>Complete Date</label><input type="text" name="complete_date">
+								<label>Time Needed</label><input type="text" name="time_needed">
+								<label>Budget</label><p><input type="text" name="budget">
+								<label>Actual Cost</label><input type="text" name="actual_cost">
+								<input type="submit" value="Create">
+							</form>
+						</div>
+					</div>
+					<?php
 						$conn = new mysqli($servername, $username, $password, $dbname);  
 						$sql = "SELECT * FROM phases WHERE project_id ='$projectid' ";
 						$result = $conn->query($sql); 
+						$num_rows = $result->num_rows;
+
+						if($num_rows === 0){
+							?><div id="projectBoxCreate">No phases have been found for this project.</div><?php
+						}
 
 						while ($row=mysqli_fetch_array($result)) 
 						{ 
@@ -80,7 +116,7 @@ $projectid = $_GET["projectid"];
 
 							?><label>Phase ID</label><p><?php echo $row['phase_id']; ?></p><?php
 							?><label>Status</label><p><?php echo $row['status'];?></p><?php
-							?><label>Start Date</label><p><?php echo $row['status'];?></p><?php
+							?><label>Start Date</label><p><?php echo $row['start_date'];?></p><?php
 							?><label>Complete Date</label><p><?php echo $row['complete_date'];?></p><?php
 							?><label>Time Needed</label><p><?php echo $row['time_needed'];?></p><?php
 							?><label>Budget</label><p><?php echo $row['budget'];?></p><?php
@@ -88,6 +124,7 @@ $projectid = $_GET["projectid"];
 							
 							?>	
 							<div class="action_btns">
+
 							<?php	 
 
 							if($_SESSION['privilege'] == 'Company'){

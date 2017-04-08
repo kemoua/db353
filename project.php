@@ -110,11 +110,6 @@ $result = $conn->query($sql);
 						<a href="tasks.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" src="images/task.png" width="80" height="80">
 						</a>
 
-
-						<a href="settings.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/settings.png" width="80" height="80">
-						</a>
-
-
 						<a href="billing.php?projectid=<?php echo $_GET["projectid"] ?>"><img border="0" alt="" src="images/billing.png" width="80" height="80">
 						</a>						
 					</div>
