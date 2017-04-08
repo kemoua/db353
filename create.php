@@ -45,7 +45,7 @@ $(document).ready(function(){
 <body>
 <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header>
-		<div id="logo" ></div>
+		<div id="logo" onclick="window.location = 'home.php';"></div>
 	</header>
 
 		<ul id="menu">
@@ -116,26 +116,47 @@ $(document).ready(function(){
 				Phone: <input type="text" id="new_phone"><br>
 				Username: <input type="text" id="new_username"><br>
 				Password: <input type="password" id="new_password"><br>
-				<input type="button" value="Create Project" onclick="create_project();">
-				<br><input type="text" id="result">
+				<input type="button" value="Create Client" onclick="create_client();">
 			</div>
 		</div>	
 
 	<!-- Create Project -->
 		<div id="projectBoxCreate">
 			<div id="content">
-				Project ID: <input type="text" id="new_project_id"><br>
-				Client ID: <input type="text" id="new_client_id"><br>
-				Status:<input type="text" id="new_status"><br>
-				Start Date:<input type="text" id="new_start_date"><br>
-				Complete Date: <input type="text" id="new_complete_date"><br>
+			<?php
+			$sql3 = "SELECT * FROM clients";
+			$clientid = $conn->query($sql3);
+			?>
+				Client ID: <select id="new_client_id">
+							<?php 
+							while ($rowid=mysqli_fetch_array($clientid)) 
+							{ 
+							?>
+								<option value="<?php echo $rowid['client_id']; ?>"></option>
+							<?php 
+							}
+							?>
+							</select>
+				<br>
+
+				Status:<select id="new_status">
+						<option value="Analysis" selected>Analysis</option>
+						<option value="In Progress">In Progress</option>
+						<option value="Completed">Completed</option>
+						<option value="Cancelled">Cancelled</option>
+						</select><br>
+				Start Date:<input type="date" id="new_start_date" value="<?php echo date('Y-m-d')?>"><br>
+				Complete Date: <input type="date" id="new_complete_date"><br>
 				Time Needed: <input type="text" id="new_time_needed"><br>
 				Title: <input type="text" id="new_title"><br>
-				Type: <input type="text" id="new_type"><br>
-				Budget <input type="text" id="new_budget"><br>
-				Actual Cost: <input type="text" id="new_actual_cost"><br>
+				Type: <select id="new_type">
+						<option value="Condo" selected>Condo</option>
+						<option value="House">House</option>
+						</select><br>
+				Budget <input type="number" id="new_budget"><br>
+				Actual Cost: <input type="number" id="new_actual_cost"><br>
 				<input type="button" value="Create Project" onclick="create_project();">
-				<br><input type="text" id="result">
+				<br><input type="text" id="result" style="width: 500px;">
 			</div>
 		</div>
 

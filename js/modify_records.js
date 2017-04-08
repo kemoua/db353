@@ -17,8 +17,8 @@ function edit_row(id)
    x.appendChild(t);
    document.getElementById("status_text"+id).appendChild(x);
    x = document.createElement("OPTION"); 
-    x.setAttribute("value", "In progress");
-   t = document.createTextNode("In progress");
+    x.setAttribute("value", "In Progress");
+   t = document.createTextNode("In Progress");
    x.appendChild(t);
    document.getElementById("status_text"+id).appendChild(x);
    x = document.createElement("OPTION"); 
@@ -93,8 +93,6 @@ function save_row(id)
 
 function create_project()
 {
- if(confirm("Confirm Project")){
- var project_id=document.getElementById("new_project_id").value;
  var client_id=document.getElementById("new_client_id").value;
  var status=document.getElementById("new_status").value;
  var start_date=document.getElementById("new_start_date").value;
@@ -103,15 +101,20 @@ function create_project()
  var title=document.getElementById("new_title").value;
  var type=document.getElementById("new_type").value;
  var budget=document.getElementById("new_budget").value;
- var actual_cost=document.getElementById("new_actual_cost").value; 
- alert(project_id);
+ var actual_cost=document.getElementById("new_actual_cost").value;
+ 
+ if (title=="") {
+  alert("Enter a title!");
+  return;
+ }
+
+ if(confirm("Confirm Project?")){
  $.ajax
  ({
   type:'post',
   url:'modify_records.php',
   data:{
-   insert_row:'insert_row',
-   project_id_val:project_id,
+   create_project:'create_project',
    client_id_val:client_id,
    status_val:status,
    start_date_val:start_date,
@@ -132,23 +135,41 @@ function create_project()
         if(response!=""){
           document.getElementById("result").value="success";
           window.location.href = "home.php";
-          // var id=response;
-          // var table=document.getElementById("project_table");
+        }
+    }
+   }
+   
+  }
+ });
+}
+}
 
-          // var table_len=(table.rows.length)-1;
-          
-          // var row = table.insertRow(table_len).outerHTML="<tr id='row"+id+"'><td id='project_id_val"+id+"'>"+project_id+"</td><td id='status_val"+id+"'>"+status+"</td><td id='start_date_val"+id+"'>"+start_date+"</td><td><input type='button' class='edit_button' id='edit_button"+id+"' value='edit' onclick='edit_row("+id+");'/><input type='button' class='save_button' id='save_button"+id+"' value='save' onclick='save_row("+id+");'/><input type='button' class='delete_button' id='delete_button"+id+"' value='delete' onclick='delete_row("+id+");'/></td></tr>";
+function create_client()
+{
+ if(confirm("Confirm New Client?")){
+ var username=document.getElementById("new_username").value;
+ var password=document.getElementById("new_password").value;
 
-          //  document.getElementById("new_project_id").value="";
-          //  document.getElementById("new_client_id").value="";
-          //  document.getElementById("new_status").value="";
-          //  document.getElementById("new_start_date").value="";
-          //  document.getElementById("new_complete_date").value="";
-          //  document.getElementById("new_time_needed").value="";
-          //  document.getElementById("new_title").value="";
-          //  document.getElementById("new_type").value="";
-          //  document.getElementById("new_budget").value="";
-          //  document.getElementById("new_actual_cost").value=""; 
+ 
+ $.ajax
+ ({
+  type:'post',
+  url:'modify_records.php',
+  data:{
+   create_client:'create_client',
+   username_val:username,
+   password_val:password
+  },
+  success:function(response) {
+   if(response=="error1062"){
+    document.getElementById("result").value="Not unique";
+   } else {
+    if (response=="error1366"){
+      document.getElementById("result").value="Incorrect string value";
+    } else{
+        if(response!=""){
+          document.getElementById("result").value="success";
+          window.location.href = "home.php";
         }
     }
    }
