@@ -66,9 +66,21 @@ header button{
     font-size: 45px; 
     margin-top: -20px; 
 } 
+#projectBoxCreate{
+    padding: 30px;
+    margin: 40 auto;
+    background-color: rgba(100, 50, 50, 0.7);
+    width: 1000px;  
+    border:2px solid black;  
+    overflow: auto;   
+}
 #content p{
     font-weight: 600;
     font-size: 39px;
+}
+#content label{
+    font-weight: 800;
+    font-size: 22px;       
 }
 #content{
     margin-top:0px;

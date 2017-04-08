@@ -102,18 +102,23 @@ $(document).ready(function(){
 	
 
 	<div id="wrapper">
-		Project ID: <input type="text" id="new_project_id"><br>
-		Client ID: <input type="text" id="new_client_id"><br>
-		Status: <input type="text" id="new_status"><br>
-		Start Date:<input type="text" id="new_start_date"><br>
-		Complete Date: <input type="text" id="new_complete_date"><br>
-		Time Needed: <input type="text" id="new_time_needed"><br>
-		Title: <input type="text" id="new_title"><br>
-		Type: <input type="text" id="new_type"><br>
-		Budget <input type="text" id="new_budget"><br>
-		Actual Cost: <input type="text" id="new_actual_cost"><br>
-		<input type="button" value="Create Project" onclick="create_project();">
-		<br><input type="text" id="result">
+		<div id="projectBoxCreate">
+			<div id="content">
+				<label>Project ID: </label><input type="text" id="new_project_id"><br>
+				<label>Client ID: </label><input type="text" id="new_client_id"><br>
+				<label>Status:</label><input type="text" id="new_status"><br>
+				<label>Start Date:</label><input type="text" id="new_start_date"><br>
+				<label>Complete Date: </label><input type="text" id="new_complete_date"><br>
+				<label>Time Needed: </label><input type="text" id="new_time_needed"><br>
+				<label>Title: </label><input type="text" id="new_title"><br>
+				<label>Type: </label><input type="text" id="new_type"><br>
+				<label>Budget</label> <input type="text" id="new_budget"><br>
+				<label>Actual Cost: </label><input type="text" id="new_actual_cost"><br>
+				<input type="button" value="Create Project" onclick="create_project();">
+				<br><input type="text" id="result">
+			</div>
+		</div>
+
 	</div>
 	<?php
 	$conn->close();
