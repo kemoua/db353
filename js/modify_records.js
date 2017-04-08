@@ -142,7 +142,7 @@ function create_project()
     } else{
         if(response!=""){
           document.getElementById("result").value=response;
-          window.location.href = "home.php";
+          // window.location.href = "home.php";
         }
     }
    }
