@@ -6,15 +6,21 @@ $username="root";
 $password="root";
 $dbname="comp353";
 
+$ext = " ORDER BY status";
+
+$status = isset($_GET['status'])? " ORDER BY status":"";
+$title = isset($_GET['title'])? " ORDER BY title":"";
+$start_date = isset($_GET['start_date'])? " ORDER BY start_date":"";
+
 //query for admin
 $conn = new mysqli($servername, $username, $password, $dbname); 
-$sql = "SELECT * FROM projects";
+$sql = "SELECT * FROM projects" . $status . $title . $start_date;
 $result = $conn->query($sql);
 
 
 //query for users with no admin privileges
 $user = $_SESSION['user'];
-$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' ";
+$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' " . $status . $title . $start_date;
 $resultClient = $conn->query($sql2);
 
 ?>
@@ -76,11 +82,11 @@ $(document).ready(function(){
 									<?php
 										$conn->close();
 										$conn = new mysqli($servername, $username, $password, $dbname); 
-										$sql = "SELECT * FROM projects";
+										$sql = "SELECT * FROM projects" . $status . $title . $start_date;
 										$result = $conn->query($sql);
 										//query for users with no admin privileges
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' ";
+										$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' " . $status . $title . $start_date;
 										$resultClient = $conn->query($sql2);
 									?> 
 
@@ -98,7 +104,15 @@ $(document).ready(function(){
 		</ul> 
 
 	<div id="wrapper">
-
+		<div class="filters">
+		Filters: 
+			<form action="home.php" method="get">
+			<input type="checkbox" name="status"> Status
+			<input type="checkbox" name="title"> Title
+			<input type="checkbox" name="start_date"> Start Date
+			<input type="submit" value="Filter">
+			</form>
+		</div>
 
 		<?php  
 				if($_SESSION['privilege'] == 'Company'){
