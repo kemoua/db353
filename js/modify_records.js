@@ -102,7 +102,15 @@ function create_project()
  var type=document.getElementById("new_type").value;
  var budget=document.getElementById("new_budget").value;
  var actual_cost=document.getElementById("new_actual_cost").value;
- 
+ // alert(client_id);
+ // alert(status);
+ // alert(start_date);
+ // alert(complete_date);
+ // alert(time_needed);
+ // alert(title);
+ // alert(type);
+ // alert(budget);
+ // alert(actual_cost);
  if (title=="") {
   alert("Enter a title!");
   return;
@@ -133,7 +141,7 @@ function create_project()
       document.getElementById("result").value="Enter project";
     } else{
         if(response!=""){
-          document.getElementById("result").value="success";
+          document.getElementById("result").value=response;
           window.location.href = "home.php";
         }
     }

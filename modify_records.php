@@ -56,10 +56,17 @@ if(isset($_POST['create_project']))
  // $title = !empty($title) ? "'$title'" : "";
  // $budget = !empty($budget) ? "'$budget'" : "0";
  // $actual_cost = !empty($actual_cost) ? "'$actual_cost'" : "0";
-
-
- $sql = "INSERT INTO projects VALUES((SELECT MAX(project_id) FROM projects)+1,'$client_id','$status','$start_date','$complete_date','$time_needed','$title','$type','$budget','$actual_cost')";
-
+$projid =  "SELECT MAX(project_id)+1 AS max FROM projects";
+$projectid = $conn->query($projid);
+while ($rowid=mysqli_fetch_array($projectid)) 
+{ 
+	$id=$rowid['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ // $sql = "INSERT INTO projects VALUES((SELECT MAX(project_id)+1 FROM projects),'$client_id','$status','$start_date','$complete_date','$time_needed','$title','$type','$budget','$actual_cost')";
+	 // $sql = "INSERT INTO projects(project_id,client_id,status,title,type) VALUES((SELECT MAX(project_id)+1 FROM projects),$client_id,'$status','$title','$type')";
+ $sql = "INSERT INTO projects(project_id,client_id,status,title,type) VALUES($id,$client_id,'$status','$title','$type')";
 
 
  if ($conn->query($sql) === TRUE) {
