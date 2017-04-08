@@ -48,6 +48,8 @@ if (isset($_POST["member-conn"])){
 		}
 	}
 	else{
-		echo "PAS BON RENTRE UN PASS";
+			header('location:../index.php');
+			session_destroy();
+			exit();
 	}
 } 

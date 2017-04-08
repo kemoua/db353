@@ -86,7 +86,10 @@ $(document).ready(function(){
 
 								</ul>
 		                        </li>
-		                        <li><a href="#">Create</a></li>
+		                        <?php
+		                        if($_SESSION['privilege'] == 'Company'){
+		                        	?><li><a href="create.php">Create</a></li>
+		                        <?php }?>	
 		                </ul>
 		        </li>
 		        <li><a href="#">About</a></li>
