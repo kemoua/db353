@@ -124,7 +124,7 @@ $(document).ready(function(){
 		<div id="projectBoxCreate">
 			<div id="content">
 			<?php
-			$sql3 = "SELECT * FROM clients";
+			$sql3 = "SELECT client_id FROM clients";
 			$clientid = $conn->query($sql3);
 			?>
 				Client ID: <select id="new_client_id">
@@ -132,7 +132,7 @@ $(document).ready(function(){
 							while ($rowid=mysqli_fetch_array($clientid)) 
 							{ 
 							?>
-								<option value="<?php echo $rowid['client_id']; ?>"></option>
+								<option value="<?php echo $rowid['client_id']; ?>"><?php echo $rowid['client_id']; ?></option>
 							<?php 
 							}
 							?>
