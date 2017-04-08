@@ -102,18 +102,38 @@ $(document).ready(function(){
 	
 
 	<div id="wrapper">
+	<!-- Create Client if needed -->
+		<div id="clientBoxCreate">
+			<div id="content">
+				Client ID: <input type="text" id="new_cclient_id"><br>
+				First Name: <input type="text" id="new_first_name"><br>
+				Last Name:<input type="text" id="new_last_name"><br>
+				Civic #: <input type="text" id="new_civic_number"><br>
+				Street: <input type="text" id="new_street"><br>
+				Postal Code: <input type="text" id="new_postal_code"><br>
+				Country: <input type="text" id="new_country"><br>
+				City: <input type="text" id="new_city"><br>
+				Phone: <input type="text" id="new_phone"><br>
+				Username: <input type="text" id="new_username"><br>
+				Password: <input type="password" id="new_password"><br>
+				<input type="button" value="Create Project" onclick="create_project();">
+				<br><input type="text" id="result">
+			</div>
+		</div>	
+
+	<!-- Create Project -->
 		<div id="projectBoxCreate">
 			<div id="content">
-				<label>Project ID: </label><input type="text" id="new_project_id"><br>
-				<label>Client ID: </label><input type="text" id="new_client_id"><br>
-				<label>Status:</label><input type="text" id="new_status"><br>
-				<label>Start Date:</label><input type="text" id="new_start_date"><br>
-				<label>Complete Date: </label><input type="text" id="new_complete_date"><br>
-				<label>Time Needed: </label><input type="text" id="new_time_needed"><br>
-				<label>Title: </label><input type="text" id="new_title"><br>
-				<label>Type: </label><input type="text" id="new_type"><br>
-				<label>Budget</label> <input type="text" id="new_budget"><br>
-				<label>Actual Cost: </label><input type="text" id="new_actual_cost"><br>
+				Project ID: <input type="text" id="new_project_id"><br>
+				Client ID: <input type="text" id="new_client_id"><br>
+				Status:<input type="text" id="new_status"><br>
+				Start Date:<input type="text" id="new_start_date"><br>
+				Complete Date: <input type="text" id="new_complete_date"><br>
+				Time Needed: <input type="text" id="new_time_needed"><br>
+				Title: <input type="text" id="new_title"><br>
+				Type: <input type="text" id="new_type"><br>
+				Budget <input type="text" id="new_budget"><br>
+				Actual Cost: <input type="text" id="new_actual_cost"><br>
 				<input type="button" value="Create Project" onclick="create_project();">
 				<br><input type="text" id="result">
 			</div>
