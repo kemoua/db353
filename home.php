@@ -29,7 +29,6 @@ if(isset($_GET['start_date'])){
 //query for admin
 $conn = new mysqli($servername, $username, $password, $dbname); 
 $sql = "SELECT * FROM projects" . $status . $title . $start_date;
-echo $sql;
 $result = $conn->query($sql);
 
 
