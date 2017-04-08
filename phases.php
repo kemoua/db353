@@ -13,6 +13,23 @@ $projectid = $_GET["projectid"];
 <html>
 <head>
 	<link rel="stylesheet" href="css/styleHome.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/modify_phases.js"></script>
+	<script type='text/javascript'>
+	$(document).ready(function(){ 
+	    $(window).scroll(function(){ 
+	        if ($(this).scrollTop() > 100) { 
+	            $('#scroll').fadeIn(); 
+	        } else { 
+	            $('#scroll').fadeOut(); 
+	        } 
+	    }); 
+	    $('#scroll').click(function(){ 
+	        $("html, body").animate({ scrollTop: 0 }, 600); 
+	        return false; 
+	    }); 
+	});
+	</script>
 	<title>PHASES</title>
 </head>
 <body>
@@ -134,6 +151,8 @@ $projectid = $_GET["projectid"];
 							?>
 							  <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_row('<?php echo $row['project_id'];?>');">
 						 	  <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
+						 	  <input type='button' style="display: none;" class="save_button" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_task('<?php echo $row['project_id'];?>');">
+
 							<?php 
 							} 
 							
