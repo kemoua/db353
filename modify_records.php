@@ -6,14 +6,22 @@ $dbname="comp353";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if(isset($_POST['edit_row']))
+if(isset($_POST['edit_project']))
 {
  $row=$_POST['row_id'];
  $actual_cost=$_POST['actual_cost_val'];
  $status=$_POST['status_val'];
  $start_date=$_POST['start_date_val'];
+ $budget=$_POST['budget_val'];
+ $type=$_POST['type_val'];
+ $time_needed=$_POST['time_needed_val'];
+ $complete_date=$_POST['complete_date_val'];
 
- $sql = "UPDATE projects SET status='$status',start_date='$start_date',actual_cost='$actual_cost' WHERE project_id = '$row'";
+ $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
+ $budget = !empty($budget) ? $budget : "NULL";
+ $actual_cost = !empty($actual_cost) ? $actual_cost : "0";
+
+ $sql = "UPDATE projects SET budget=$budget,type='$type',time_needed='$time_needed',complete_date=$complete_date,status='$status',start_date='$start_date',actual_cost='$actual_cost' WHERE project_id = '$row'";
 
  if ($conn->query($sql) === TRUE) {
     echo "success";
@@ -53,7 +61,7 @@ if(isset($_POST['create_project']))
 
  $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
  // $title = !empty($title) ? "'$title'" : "";
- $budget = !empty($budget) ? $budget : "0";
+ $budget = !empty($budget) ? $budget : "NULL";
  $actual_cost = !empty($actual_cost) ? $actual_cost : "0";
 $projid =  "SELECT MAX(project_id)+1 AS max FROM projects";
 $projectid = $conn->query($projid);
@@ -63,7 +71,7 @@ while ($rowid=mysqli_fetch_array($projectid))
 }
 $conn->close();
 $conn= new mysqli($servername, $username, $password, $dbname);
- $sql = "INSERT INTO projects VALUES($id,'$client_id','$status','$start_date',$complete_date,'$time_needed','$title','$type','$budget','$actual_cost')";
+ $sql = "INSERT INTO projects VALUES($id,'$client_id','$status','$start_date',$complete_date,'$time_needed','$title','$type',$budget,'$actual_cost')";
  // $sql = "INSERT INTO projects(project_id,client_id,status,title,type) VALUES($id,$client_id,'$status','$title','$type')";
 
 

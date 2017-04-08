@@ -1,14 +1,21 @@
-function edit_row(id)
+function edit_project(id)
 {
-   // var project_id=document.getElementById("project_id_val"+id).innerHTML;
+   //var project_id=document.getElementById("project_id_val"+id).innerHTML;
    var status=document.getElementById("status_val"+id).innerHTML;
    var start_date=document.getElementById("start_date_val"+id).innerHTML;
    var actual_cost=document.getElementById("actual_cost_val"+id).innerHTML;
+   var client_id=document.getElementById("client_id_val"+id).innerHTML;
+   var budget=document.getElementById("budget_val"+id).innerHTML;
+   var type=document.getElementById("type_val"+id).innerHTML;
+   var time_needed=document.getElementById("time_needed_val"+id).innerHTML;
+   var complete_date=document.getElementById("complete_date_val"+id).innerHTML;
    // document.getElementById("project_id_val"+id).innerHTML="<input type='text' id='project_id_text"+id+"' value='"+project_id+"'>";
    // document.getElementById("status_val"+id).innerHTML="<input type='text' id='status_text"+id+"' value='"+status+"'>";
    // var list = document.getElementById("status_val"+id);
    // var newOp = document.createElement("option");
-
+   
+//create edit fields
+   document.getElementById("budget_val"+id).innerHTML='<input type="number" step="0.01" id="budget_text'+id+'" value="'+budget+'">';
    document.getElementById("actual_cost_val"+id).innerHTML='<input type="number" step="0.01" id="actual_cost_text'+id+'" value="'+actual_cost+'">';
    document.getElementById("status_val"+id).innerHTML="<select id='status_text"+id+"'></select>";
    var x = document.createElement("OPTION");
@@ -32,38 +39,68 @@ function edit_row(id)
    x.appendChild(t);
    document.getElementById("status_text"+id).appendChild(x); 
 
-   document.getElementById("start_date_val"+id).innerHTML='<input type="date" id="start_date_text'+id+'" value="'+start_date+'">';
 
+   document.getElementById("type_val"+id).innerHTML="<select id='type_text"+id+"'></select>";
+   x = document.createElement("OPTION");
+   x.setAttribute("value", "Condo");
+   t = document.createTextNode("Condo");
+   x.appendChild(t);
+   document.getElementById("type_text"+id).appendChild(x);
+   x = document.createElement("OPTION"); 
+    x.setAttribute("value", "House");
+   t = document.createTextNode("House");
+   x.appendChild(t);
+   document.getElementById("type_text"+id).appendChild(x);
+
+   document.getElementById("time_needed_val"+id).innerHTML='<input type="text" id="time_needed_text'+id+'" value="'+time_needed+'">';
+
+   document.getElementById("start_date_val"+id).innerHTML='<input type="date" id="start_date_text'+id+'" value="'+start_date+'">';
+   document.getElementById("complete_date_val"+id).innerHTML='<input type="date" id="complete_date_text'+id+'" value="'+complete_date+'">';
+//display buttons
    document.getElementById("edit_button"+id).style.display="none";
    document.getElementById("save_button"+id).style.display="block";
+   document.getElementById("cancel_button"+id).style.display="block";
 }
 
-function save_row(id)
+function cancel_edit_project(id){
+  window.location.href = "project.php?projectid="+id;
+}
+
+function save_project(id)
 {
  var actual_cost=document.getElementById("actual_cost_text"+id).value;
  var status=document.getElementById("status_text"+id).value;
  var start_date=document.getElementById("start_date_text"+id).value;
-	
+ var budget=document.getElementById("budget_text"+id).value;
+ var type=document.getElementById("type_text"+id).value;
+ var time_needed=document.getElementById("time_needed_text"+id).value;
+ var complete_date=document.getElementById("complete_date_text"+id).value;
+
  $.ajax
  ({
   type:'post',
   url:'modify_records.php',
   data:{
-   edit_row:'edit_row',
+   edit_project:'edit_project',
    row_id:id,
    actual_cost_val:actual_cost,
    status_val:status,
-   start_date_val:start_date
+   start_date_val:start_date,
+   budget_val:budget,
+   type_val:type,
+   time_needed_val:time_needed,
+   complete_date_val:complete_date
   },
   success:function(response) {
     document.getElementById("result").value=response;
    if(response=="success")
    {
-    document.getElementById("actual_cost_val"+id).innerHTML=actual_cost;
-    document.getElementById("status_val"+id).innerHTML=status;
-    document.getElementById("start_date_val"+id).innerHTML=start_date;
-    document.getElementById("edit_button"+id).style.display="block";
-    document.getElementById("save_button"+id).style.display="none";
+    window.location.href = "project.php?projectid="+id;
+    // document.getElementById("actual_cost_val"+id).innerHTML=actual_cost;
+    // document.getElementById("status_val"+id).innerHTML=status;
+    // document.getElementById("start_date_val"+id).innerHTML=start_date;
+    // document.getElementById("edit_button"+id).style.display="block";
+    // document.getElementById("save_button"+id).style.display="none";
    }
   }
  });
@@ -142,7 +179,7 @@ function create_project()
     } else{
         if(response!=""){
           document.getElementById("result").value=response;
-          // window.location.href = "home.php";
+          window.location.href = "home.php";
         }
     }
    }

@@ -129,22 +129,23 @@ $result = $conn->query($sql);
 		 		?><div id="contentBigBox"> 
 		 			<?php
 		 				//rajout de lignes 
-				 		?><b>Project #: </b><label></label></br><?php 
-				 		?><b>Client ID: </b><label></label></br><?php 
-				 		?><b>Budget: </b><label></label><br><?php
+				 		?><b>Project #: </b><label id="project_id_val<?php echo $row['project_id'];?>"><?php echo $row['project_id'];?></label></br><?php 
+				 		?><b>Client ID: </b><label id="client_id_val<?php echo $row['project_id'];?>"><?php echo $row['client_id'];?></label></br><?php 
+				 		?><b>Budget: </b><label id="budget_val<?php echo $row['project_id'];?>"><?php echo $row['budget'];?></label><br><?php
 				 		?><b>Actual Cost: </b><label id="actual_cost_val<?php echo $row['project_id'];?>"><?php echo $row['actual_cost'];?></label><br><?php 
 				 		?><b>Status: </b><label id="status_val<?php echo $row['project_id'];?>"><?php echo $row['status'];?></span></label><br><?php 
 				 		?><b>Type: </b><label id="type_val<?php echo $row['project_id'];?>"><?php echo $row['type'];?></label><br><?php 
-						?><b>Time Needed : </b><label></label></br><?php
+						?><b>Time Needed : </b><label id="time_needed_val<?php echo $row['project_id'];?>"><?php echo $row['time_needed'];?></label></br><?php
 						?><b>Start Date: </b><label id="start_date_val<?php echo $row['project_id'];?>"><?php echo $row['start_date'];?></label><br><?php 
-		 				?><b>Complete Date: </b><label></label></br><?php
+		 				?><b>Complete Date: </b><label id="complete_date_val<?php echo $row['project_id'];?>"><?php echo $row['complete_date'];?></label></br><?php
 		 			?>
 						<div class="action_btns">
 						<?php	 
 							if($_SESSION['privilege'] == 'Company'){
 						?>
-						   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_row('<?php echo $row['project_id'];?>');">
-						   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_row('<?php echo $row['project_id'];?>');">	
+						   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_project('<?php echo $row['project_id'];?>');">
+						   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_project('<?php echo $row['project_id'];?>');">	
+						   <input type='button' style="display: none;" class="save_button" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_project('<?php echo $row['project_id'];?>');">
 						<?php } ?>
 						</div>	
 
