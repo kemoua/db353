@@ -42,13 +42,13 @@ if (isset($_POST["member-conn"])){
 		}
 		else{ 
 			//user needs to try again
-			header('location:../index.php');
+			header('location:../index.php?connection=0');
 			session_destroy();
 			exit();
 		}
 	}
 	else{
-			header('location:../index.php');
+			header('location:../index.php?connection=0');
 			session_destroy();
 			exit();
 	}
