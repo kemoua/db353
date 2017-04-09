@@ -59,16 +59,15 @@ header button{
     overflow: hidden; 
     border: 5px double  rgba(0,0,0,0.5);  
 }
-#projectBoxBig h1{ 
-    clear:both; 
+#projectBoxBig h1{  
+    margin-bottom: 30px; 
 }
-#projectBoxBig{    
+#projectBoxBig{   
     padding: 30px;
     margin: 40 auto;
     background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    width: 1000px;   
-    overflow: auto;  
+    width: 1000px;    
     border: 5px double  rgba(0,0,0,0.5); 
 }
 #projectBoxPhases label{ 
@@ -108,14 +107,11 @@ header button{
     background:darkgrey;
 } 
 #contentBigBox{
-    width: 700px;
+    float: left;
+    width: 300px;
     font-size: 30px;
-    text-align: left;
-    margin-left:115px; 
+    text-align: left;  
 }    
-#contentBigBox em{
-    width: 500px;
-} 
 #content{
     margin-top:0px; 
     width: 500px;
@@ -171,11 +167,28 @@ header button{
     min-width: 250px;
     min-height: 250px;
 }
-.project_main_pic img{ 
-    height: 500px;
-    width: 700px; 
-    margin:0 auto;
+.main_pic_project{   
+    margin-bottom: 20px;
+    margin-top:20px;
 } 
+.project_main_pic{ 
+    width: 450px;
+    height: 480px;
+    float:right;
+    background-color: darkgrey;
+}
+.action_btns_project{
+    clear: both;
+    width: 200px;
+}
+#photosBox{
+    width: 500px;
+    clear: both; 
+}
+#photosBox img{
+    width: 120px;
+    float: left;
+}
 
 /*.logout{
   outline: 0;
@@ -413,15 +426,15 @@ header button{
 }
 #buttonSection{ 
     background: rgba(179,0,0,0.52);
-    border:3px double rgba(255,255,255,0.2);
-    border-bottom: none;
-    margin-top: 50px;
+    border:10px solid rgba(255,255,255,0.2); 
+    margin-top: 42px;
+    margin-bottom: 30px;
     float:right;    
-    height: 70px;  
-    width: 500px;
+    height: 80px;  
+    width: 1000px;
 } 
 #buttonSection img{
-    margin-top:9px;
+    margin-top:5px;
 } 
 .back{
     float:left;
@@ -440,16 +453,41 @@ header button{
 } 
 #newTask{
     display: none;
-} 
-#uploadPhoto{
-    display:none;
-}
-#projectBoxTasks{
     font-size: 25px;
     clear:both;
     padding: 30px;
     margin: 40 auto; 
     height: 400px; 
+    overflow: hidden; 
+    border: 5px double  rgba(0,0,0,0.5);
+    background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+} 
+#newTask h2{ 
+    text-align: left;
+    margin-bottom: 10px;
+    background-color: darkgrey;    
+}
+#newTask label{   
+    display: inline-block;
+    font-weight: 600; 
+    width: 180px;
+}
+#newTask input{
+    clear: both;
+    float:right;
+    margin-right: 600px
+}
+
+#uploadPhoto{
+    display:none;
+}
+#projectBoxTasks{ 
+    font-size: 25px;
+    clear:both;
+    padding: 30px;
+    margin: 40 auto; 
+    height: 425px; 
     overflow: hidden; 
     border: 5px double  rgba(0,0,0,0.5);
     background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -466,8 +504,8 @@ header button{
 }
 #projectBoxTasks .edit_button{
     position: relative;
-    bottom: 40px;
-    left: 160px;
+    bottom: -59px;
+    left: 950px;
 }
 .edit_button{
     margin-top:20px;
@@ -478,6 +516,21 @@ header button{
     border:none;
     outline: none;
     cursor: pointer;
+    float: left;
+    margin-left:-300px;
+    margin-top: -40px;
+}
+.action_btns .deleteTask{
+    position: relative;  
+    margin-top:20px;
+}
+.deleteButton{
+    border:none;
+    outline: none; 
+    width: 160px;
+    height: 50px;
+    background:url('../images/delete_1_2.png');
+    background-repeat: no-repeat;  
 }
 .deleteTask{
     border:none;
@@ -488,10 +541,51 @@ header button{
     background:url('../images/delete_1_2.png');
     background-repeat: no-repeat;
     position: relative;
-    bottom: 40px;
-    left: 450px;
+    bottom: 0px;
+    left: 400px;
+}
+.deleteProject{
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    background:url('../images/delete_1_2.png');
+    background-repeat: no-repeat;
+    position: relative;  
+    right:150px;
+    bottom:40px;
 }
 .edit_button:hover{
     background:url('../images/edit_1_2.png');
     background-repeat: no-repeat;
-};   
+};    
+
+
+ 
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+ 
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong { font-weight: bold; } 
+
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+    
+/** reset lightbox position **/
+#lightbox-container-image-data-box {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+  
+
+#thumbnails { display: block; margin-bottom: 10px; margin-left: 19px;}
+#thumbnails ul li { float: left; margin-right: 22px; margin-bottom: 12px; }
+
+/** clearfix **/
+.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.clearfix { margin-left:5px;width:500px;display: inline-block; }
+
