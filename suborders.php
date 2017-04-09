@@ -89,6 +89,10 @@ $order = $_GET["order"];
 		<div id="wrapper">
 			<div id="projectBox">
 			<h1>For Order# <?php echo $order;?></h1>
+				<table id="table_suborder<?php echo $row['sub_order_number'];?>">
+				<tr>
+					<th>Suborder #</th><th>Item</th<th>Quantity</th><th>Total Cost</th>
+				</tr>
 			<?php  
 				$conn = new mysqli($servername, $username, $password, $dbname); 
 				$sql = "SELECT * FROM sub_orders,items WHERE order_number=$order AND sub_orders.item_id = items.item_id";
@@ -96,14 +100,11 @@ $order = $_GET["order"];
 				while ($row=mysqli_fetch_array($result)) 
 				{ 
 				?>
-					<table id="table_suborder<?php echo $row['sub_order_number'];?>">
-						<tr>
-							<th>Suborder #</th><th>Item</th<th>Quantity</th><th>Total Cost</th>
-						</tr>	
+	
 						<tr>
 							<th><?php echo $row['sub_order_number']; ?></a></th><th><?php echo $row['name'];?></th><th><?php echo $row['quantity'];?></th><th><?php echo $row['cost'];?></th>
 						</tr>						
-					</table>
+					
 					<br>
 				<?php
 				}  
@@ -111,6 +112,7 @@ $order = $_GET["order"];
 			<?php
 				$conn->close();
 			?>
+			</table>
 			</div>
 		</div>
 </body>
