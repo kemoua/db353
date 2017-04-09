@@ -170,7 +170,6 @@ function create_task()
       document.getElementById("result").value="Enter project";
     } else{
         if(response!=""){
-          alert(response);
           // document.getElementById("result").value=response;
           window.location.href = "tasks.php?projectid="+project_id;
         }

@@ -177,4 +177,8 @@ function create_phase()
   }
  });
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

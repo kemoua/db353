@@ -6,6 +6,14 @@ $userid="root";
 $password="root";
 $dbid="comp353";
 
+ $conn = new mysqli($serverid, $userid, $password, $dbid);
+ $clientidsql =  "SELECT MAX(client_id)+1 AS max FROM clients";
+ $clientid = $conn->query($clientidsql);
+ while ($rowid=mysqli_fetch_array($clientid)) 
+ { 
+    $id=$rowid['max'];
+ }
+ $conn->close();
 //query for admin
 $conn = new mysqli($serverid, $userid, $password, $dbid); 
 $sql = "SELECT * FROM projects";
@@ -106,7 +114,7 @@ $(document).ready(function(){
 		<div id="clientBoxCreate">
 			<h1>Client Creation</h1>
 			<div class="contentClient">
-				Client ID: <input type="text" id="new_cclient_id"><br>
+				Client ID: <input type="text" id="new_client_id" disabled value="<?php echo $id;?>"><br>
 				First Name: <input type="text" id="new_first_name"><br>
 				Last Name:<input type="text" id="new_last_name"><br>
 				Civic #: <input type="text" id="new_civic_number"><br>
