@@ -172,8 +172,8 @@ $result = $conn->query($sql);
 				?> 
 				   <input type="button" class="deleteProject" onclick="delete_project('<?php echo $_GET['projectid'];?>');">
 				   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_project('<?php echo $row['project_id'];?>');">
-				   <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_project('<?php echo $row['project_id'];?>');">	
-				   <input type='button' style="display: none;" class="save_button" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_project('<?php echo $row['project_id'];?>');">
+				   <input type='button' style="display: none;" class="save_button_2" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_project('<?php echo $row['project_id'];?>');">	
+				   <input type='button' style="display: none;" class="save_button_2" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_project('<?php echo $row['project_id'];?>');">
 				<?php } ?>
 				</div>					
 					<!-- Test queries response -->

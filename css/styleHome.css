@@ -126,13 +126,27 @@ header button{
 } 
 #contentBigBox{
     float: left;
-    width: 350px; 
+    width: 200px; 
     font-size: 25px; 
     margin-left: 50px;
     margin-top: 10px;
     text-align: left;
 }  
-
+.buttonClientCreate{
+    margin-top:20px;
+    width: 300px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background-color: darkgrey; 
+    border-radius: 25px; 
+}
+.contentClient label{
+    font-size: 25px;
+    display: inline-block;
+    font-weight: 600;  
+    width:500px;
+    text-align: left;
+}  
 #contact_box h1{ 
     background-color: darkgrey;
  }
@@ -660,6 +674,14 @@ header button{
     border-radius: 25px;  
     text-align: center;
     margin-left: 400px;
+}
+.save_button_2{
+    width: 300px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background-color: darkgrey;
+    border-radius: 25px;  
+    text-align: center; 
 }
 .action_btns_phases .save_button_phase{
     width: 300px;
