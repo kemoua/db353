@@ -89,7 +89,7 @@ $projectid = $_GET["projectid"];
 
 		<script>
 			function displayBox() {
-			    div = document.getElementById('newPhase');
+			    div = document.getElementById('newTask');
 			    div.style.display = "block";
 			}
 		</script>
@@ -104,6 +104,7 @@ $projectid = $_GET["projectid"];
 						}
 					?>		
 
+								<label>Phase ID</label><input type="text" name="phase_id">
 
 					<div id="newPhase">
 						<div id="projectBoxPhases">
@@ -119,9 +120,8 @@ $projectid = $_GET["projectid"];
 								<label>Cost</label><input type="text" name="new_actual_cost">								
 								<input type="button" value="Create Task" onclick="create_task();">
 							</form>
-						</div>
+						</div> 
 					</div>
-
 					<?php 
 						$conn = new mysqli($servername, $username, $password, $dbname);  
 						$sql = "SELECT tasks.project_id,task_id,phases.status as phases_id,tasks.description,tasks.status as status,tasks.start_date,tasks.complete_date,tasks.time_needed,tasks.budget,tasks.cost FROM tasks,phases WHERE tasks.project_id ='$projectid' ";
@@ -130,7 +130,7 @@ $projectid = $_GET["projectid"];
 						$num_rows = $result->num_rows;
 
 						if($num_rows === 0){
-							?><div id="projectBoxCreate">No tasks have been found for this project.</div><?php
+							?><div id="projectBoxTasks">No tasks have been found for this project.</div><?php
 						}
 
 						while ($row=mysqli_fetch_array($result)) 

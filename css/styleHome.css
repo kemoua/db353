@@ -6,14 +6,14 @@
   text-align: center;  
 }
 html{ 
-	margin:auto 0;
-	padding:0px; 
-	height: 700px;  
+    margin:auto 0;
+    padding:0px; 
+    height: 700px;  
 }
 body{  
-	padding: 0px;  
-	color: black;  
-	background-repeat: no-repeat;    
+    padding: 0px;  
+    color: black;  
+    background-repeat: no-repeat;    
     margin-bottom:100px; 
     margin: 0;
     background: linear-gradient(to left top, blue, red) fixed;
@@ -21,17 +21,17 @@ body{
     background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%) fixed;
 }
 header{
-	background-image: url(../images/b_2.jpg);  
-	width: 100%; 
-	height: 150px;
-	background-repeat: no-repeat; 
-	cursor: pointer;
+    background-image: url(../images/b_2.jpg);  
+    width: 100%; 
+    height: 150px;
+    background-repeat: no-repeat; 
+    cursor: pointer;
 }
 header h1{
-	float:right;
+    float:right;
 }
 header button{
-	float: right;
+    float: right;
 }
 #wrapper{
     width: 1000px;  
@@ -42,9 +42,9 @@ header button{
     margin-top:1px;  
 } 
 #projectBox{    
-	padding: 30px;
-	margin: 40 auto; 
-	height: 350px; 
+    padding: 30px;
+    margin: 40 auto; 
+    height: 350px; 
     overflow: hidden; 
     border: 5px double  rgba(0,0,0,0.5);
     background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -76,11 +76,12 @@ header button{
     margin-left:40px;
 } 
 #projectBox h1{ 
-	text-align: center;
-	margin-left:20px; 
+    text-align: center;
+    margin-left:20px; 
     font-size: 30px; 
     margin-top: -20px; 
     margin-bottom: 20px;
+    background-color: darkgrey;
 } 
 #projectBoxCreate{
     padding: 30px;
@@ -90,7 +91,22 @@ header button{
     width: 1000px;  
     border: 5px double  rgba(0,0,0,0.5);
     overflow: auto;   
-}   
+}  
+#projectBoxCreate h1{
+    background:darkgrey;
+}
+#clientBoxCreate{
+    padding: 30px;
+    margin: 40 auto;
+    background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    width: 1000px;  
+    border: 5px double  rgba(0,0,0,0.5);
+    overflow: auto;     
+} 
+#clientBoxCreate h1{
+    background:darkgrey;
+} 
 #contentBigBox{
     width: 700px;
     font-size: 30px;
@@ -99,7 +115,7 @@ header button{
 }    
 #contentBigBox em{
     width: 500px;
-}
+} 
 #content{
     margin-top:0px; 
     width: 500px;
@@ -128,25 +144,25 @@ header button{
     top:50px;
 }
 .infosButton{ 
-	position: relative;
+    position: relative;
     bottom:60px;
     right: 15px;
-	display: inline-block;
-	width: 140px;
-	height:55px; 
-	cursor: pointer;
-	border:none;
-	background: url(../images/buttonInfos.png) no-repeat;   
+    display: inline-block;
+    width: 140px;
+    height:55px; 
+    cursor: pointer;
+    border:none;
+    background: url(../images/buttonInfos.png) no-repeat;   
     float:right;
 }
 .infosButton a:active{
     color:yellow;
 }
 .mainPic{
-	float:left;
-	height: 250px;
-	width: 250px;
-	margin-left: 20px; 
+    float:left;
+    height: 250px;
+    width: 250px;
+    margin-left: 20px; 
 }
 
 .mainPic > img {
@@ -172,8 +188,8 @@ header button{
   font-size: 18px;
 }*/ 
 #logo{
-	content:url(../images/damavand2.png);
-	float: left;
+    content:url(../images/damavand2.png);
+    float: left;
 }
 
 #menu, #menu ul {
@@ -222,7 +238,7 @@ header button{
         position: relative;
 }
 #menu li:last-child{
-	float: right;
+    float: right;
 } 
 
 #menu a {
@@ -422,8 +438,36 @@ header button{
 #newPhase{
     display: none;
 } 
+#newTask{
+    display: none;
+} 
 #uploadPhoto{
     display:none;
+}
+#projectBoxTasks{
+    font-size: 25px;
+    clear:both;
+    padding: 30px;
+    margin: 40 auto; 
+    height: 400px; 
+    overflow: hidden; 
+    border: 5px double  rgba(0,0,0,0.5);
+    background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+#projectBoxTasks label{
+    float: left;
+    font-weight: 600;
+}
+#projectBoxTasks h2{
+    text-align: left;
+    margin-bottom: 10px;
+    background-color: darkgrey;
+}
+#projectBoxTasks .edit_button{
+    position: relative;
+    bottom: 40px;
+    left: 160px;
 }
 .edit_button{
     margin-top:20px;
@@ -435,7 +479,19 @@ header button{
     outline: none;
     cursor: pointer;
 }
+.deleteTask{
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    background:url('../images/delete_1_2.png');
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 40px;
+    left: 450px;
+}
 .edit_button:hover{
     background:url('../images/edit_1_2.png');
     background-repeat: no-repeat;
-};
+};   

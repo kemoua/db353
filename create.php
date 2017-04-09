@@ -104,7 +104,8 @@ $(document).ready(function(){
 	<div id="wrapper">
 	<!-- Create Client if needed -->
 		<div id="clientBoxCreate">
-			<div id="content">
+			<h1>Client Creation</h1>
+			<div class="contentClient">
 				Client ID: <input type="text" id="new_cclient_id"><br>
 				First Name: <input type="text" id="new_first_name"><br>
 				Last Name:<input type="text" id="new_last_name"><br>
@@ -122,6 +123,7 @@ $(document).ready(function(){
 
 	<!-- Create Project -->
 		<div id="projectBoxCreate">
+			<h1>Project Creation</h1>
 			<div id="content">
 			<?php
 			$sql3 = "SELECT client_id FROM clients";
