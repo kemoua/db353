@@ -194,16 +194,43 @@ function create_project()
 function create_client()
 {
  if(confirm("Confirm New Client?")){
+ var client_id=document.getElementById("new_client_id").value; 
+ var first_name=document.getElementById("new_first_name").value;
+ var last_name=document.getElementById("new_last_name").value;
+ var civic_number=document.getElementById("new_civic_number").value;
+ var street=document.getElementById("new_street").value;
+ var postal_code=document.getElementById("new_postal_code").value;
+ var country=document.getElementById("new_country").value;
+ var city=document.getElementById("new_city").value;
+ var phone=document.getElementById("new_phone").value;
  var username=document.getElementById("new_username").value;
  var password=document.getElementById("new_password").value;
 
+if (phone=="") {
+  alert("Enter a Phone number!");
+  return;
+ }
  
+ if (username=="") {
+  alert("Enter a username!");
+  return;
+ }
+
  $.ajax
  ({
   type:'post',
   url:'modify_records.php',
   data:{
    create_client:'create_client',
+   client_id_val:client_id,
+   first_name_val:first_name,
+   last_name_val:last_name,
+   civic_number_val:civic_number,
+   street_val:street,
+   postal_code_val:postal_code,
+   country_val:country,
+   city_val:city,
+   phone_val:phone,
    username_val:username,
    password_val:password
   },

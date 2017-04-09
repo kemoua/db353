@@ -6,6 +6,10 @@ $dbname="comp353";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+/**************************************************************************************/
+/*  PROJECTS  */
+/**************************************************************************************/
+
 if(isset($_POST['edit_project']))
 {
  $row=$_POST['row_id'];
@@ -84,21 +88,52 @@ $conn= new mysqli($servername, $username, $password, $dbname);
 }
 
 /**************************************************************************************/
+/*  CLIENTS  */
+/**************************************************************************************/
 
 if(isset($_POST['create_client']))
 {
+ $client_id=$_POST['client_id_val'];
+ $first_name=$_POST['first_name_val'];
+ $last_name=$_POST['last_name_val'];
+ $civic_number=$_POST['civic_number_val'];
+ $postal_code=$_POST['postal_code_val'];
+ $country=$_POST['country_val'];
+ $city=$_POST['city_val'];
+ $phone=$_POST['phone_val'];
  $username=$_POST['username_val'];
  $password=$_POST['password_val'];
+ $street=$_POST['street_val'];
  $password = sha1($password);
 
  $sql = "INSERT INTO users VALUES('$username','$password','Customer')";
-
  if ($conn->query($sql) === TRUE) {
- 	echo "success";
+ 	$sql = "INSERT INTO clients VALUES('$client_id','$first_name','$last_name','$civic_number','$postal_code','$country','$city','$phone','$username','$street')";
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
  } else {
     echo "error" . mysqli_errno($conn);
  } 
  $conn->close();
+ // $conn = new mysqli($servername, $username, $password, $dbname);
+ // $clientidsql =  "SELECT MAX(client_id)+1 AS max FROM clients";
+ // $clientid = $conn->query($clientidsql);
+ // while ($rowid=mysqli_fetch_array($clientid)) 
+ // { 
+ //    $id=$rowid['max'];
+ // }
+ // $conn->close();
+ // $conn = new mysqli($servername, $username, $password, $dbname);
+ // $sql = "INSERT INTO clients VALUES('5','$first_name','$last_name','$civic_number','$postal_code','$country','$city','$phone','$username','$street')";
+ // if ($conn->query($sql) === TRUE) {
+ //    echo "success";
+ // } else {
+ //    echo "error" . mysqli_errno($conn);
+ // } 
+ // $conn->close();
  exit();
 }
 
