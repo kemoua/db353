@@ -8,6 +8,7 @@ $password="root";
 $dbname="comp353";
 
 $projectid = $_GET["projectid"]; 
+$order = $_GET["order"];
 ?>
 
 <html>
@@ -87,19 +88,20 @@ $projectid = $_GET["projectid"];
 		</ul>
 		<div id="wrapper">
 			<div id="projectBox">
+			<h1>For Order# <?php echo $order;?></h1>
 			<?php  
 				$conn = new mysqli($servername, $username, $password, $dbname); 
-				$sql = "SELECT * FROM orders WHERE project_id=$projectid";
+				$sql = "SELECT * FROM sub_orders,items WHERE order_number=$order AND sub_orders.item_id = items.item_id";
 				$result = $conn->query($sql);
 				while ($row=mysqli_fetch_array($result)) 
 				{ 
 				?>
-					<table id="table_order<?php echo $row['order_number'];?>">
+					<table id="table_suborder<?php echo $row['sub_order_number'];?>">
 						<tr>
-							<th>Order #</th><th>Phase ID</th<th>Total Cost</th><th>Date Order</th>
+							<th>Suborder #</th><th>Item</th<th>Quantity</th><th>Total Cost</th>
 						</tr>	
 						<tr>
-							<th><a href="suborders.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['order_number']; ?></a></th><th><?php echo $row['phase_id'];?></th><th><?php echo $row['total_cost'];?></th><th><?php echo $row['date_order'];?></th>
+							<th><?php echo $row['sub_order_number']; ?></a></th><th><?php echo $row['name'];?></th><th><?php echo $row['quantity'];?></th><th><?php echo $row['cost'];?></th>
 						</tr>						
 					</table>
 					<br>

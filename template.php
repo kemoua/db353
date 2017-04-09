@@ -87,28 +87,7 @@ $projectid = $_GET["projectid"];
 		</ul>
 		<div id="wrapper">
 			<div id="projectBox">
-			<?php  
-				$conn = new mysqli($servername, $username, $password, $dbname); 
-				$sql = "SELECT * FROM orders WHERE project_id=$projectid";
-				$result = $conn->query($sql);
-				while ($row=mysqli_fetch_array($result)) 
-				{ 
-				?>
-					<table id="table_order<?php echo $row['order_number'];?>">
-						<tr>
-							<th>Order #</th><th>Phase ID</th<th>Total Cost</th><th>Date Order</th>
-						</tr>	
-						<tr>
-							<th><a href="suborders.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['order_number']; ?></a></th><th><?php echo $row['phase_id'];?></th><th><?php echo $row['total_cost'];?></th><th><?php echo $row['date_order'];?></th>
-						</tr>						
-					</table>
-					<br>
-				<?php
-				}  
-				?>
-			<?php
-				$conn->close();
-			?>
+				<h1>je veux des billing</h1>
 			</div>
 		</div>
 </body>
