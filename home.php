@@ -6,25 +6,11 @@ $username="root";
 $password="root";
 $dbname="comp353";
 
-$title="";
-$start_date="";
+$ext = " ORDER BY status";
 
 $status = isset($_GET['status'])? " ORDER BY status":"";
-if(isset($_GET['title'])){
-	if(isset($_GET['status'])){
-		$title = ", title";
-	}else{
-		$title = " ORDER BY title";
-	}
-}
-
-if(isset($_GET['start_date'])){
-	if(isset($_GET['status']) || isset($_GET['title'])){
-		$start_date = ", start_date";
-	}else{
-		$start_date = " ORDER BY start_date";
-	}
-}
+$title = isset($_GET['title'])? " ORDER BY title":"";
+$start_date = isset($_GET['start_date'])? " ORDER BY start_date":"";
 
 //query for admin
 $conn = new mysqli($servername, $username, $password, $dbname); 
@@ -195,7 +181,7 @@ $(document).ready(function(){
 
 			 		</div><?php	
 
-			 		?><input type="image" class="infosButton" onclick="window.location='project.php?projectid=<?php echo $rowClient['project_id']; ?>';" /><?php
+			 		?><input type="button" class="infosButton" onclick="window.location='project.php?projectid=<?php echo $rowClient['project_id']; ?>';" /><?php
 
 					?>
 					</div>
