@@ -171,3 +171,69 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  $conn->close();
  exit();
 }
+
+/**************************************************************************************/
+/*  PHASES  */
+/**************************************************************************************/
+if(isset($_POST['edit_phase']))
+{
+ $phase_id=$_POST['phase_id'];
+ $project_id=$_POST['project_id_val'];
+ $status=$_POST['status_val'];
+ $start_date=$_POST['start_date_val'];
+ $complete_date=$_POST['complete_date_val'];
+ $time_needed=$_POST['time_needed_val'];
+ $budget=$_POST['budget_val'];
+ $actual_cost=$_POST['actual_cost_val'];
+
+ $start_date = !empty($start_date) ? "'$start_date'" : "NULL";
+ $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
+ $budget = !empty($budget) ? $budget : "NULL";
+ $actual_cost = !empty($actual_cost) ? $actual_cost : "NULL";
+
+ $sql = "UPDATE phases SET status='$status',start_date=$start_date,complete_date=$complete_date,time_needed='$time_needed',budget=$budget,actual_cost=$actual_cost WHERE phase_id='$phase_id' AND project_id ='$project_id'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
+
+if(isset($_POST['create_phase']))
+{
+ $project_id=$_POST['project_id_val'];
+ $status=$_POST['status_val'];
+ $start_date=$_POST['start_date_val'];
+ $complete_date=$_POST['complete_date_val'];
+ $time_needed=$_POST['time_needed_val'];
+ $budget=$_POST['budget_val'];
+ $actual_cost=$_POST['actual_cost_val'];
+
+ $start_date = !empty($start_date) ? "'$start_date'" : "NULL";
+ $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
+ $budget = !empty($budget) ? $budget : "NULL";
+ $actual_cost = !empty($actual_cost) ? $actual_cost : "NULL";
+
+$phaseidsql =  "SELECT MAX(phase_id)+1 AS max FROM phases";
+$phaseid = $conn->query($phaseidsql);
+while ($rowid=mysqli_fetch_array($phaseid)) 
+{ 
+    $id=$rowid['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "INSERT INTO phases VALUES($id,'$project_id','$status',$start_date,$complete_date,'$time_needed',$budget,$actual_cost)";
+
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
+ $conn->close();
+ exit();
+}
