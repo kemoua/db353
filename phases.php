@@ -106,20 +106,33 @@ $projectid = $_GET["projectid"];
 						}
 					?>
 
+
 					<div id="newPhase">
 						<div id="projectBoxPhases">
-							<form action="">
-								<label>Phase ID</label><input type="text" name="phase_id">
-								<label>Status</label><input type="text" name="status">
-								<label>Start Date</label><input type="text" name="start_date">
-								<label>Complete Date</label><input type="text" name="complete_date">
-								<label>Time Needed</label><input type="text" name="time_needed">
-								<label>Budget</label><p><input type="text" name="budget">
-								<label>Actual Cost</label><input type="text" name="actual_cost">
-								<input type="submit" value="Create">
-							</form>
+								<h2>Phase ID #</h2>
+								<label>Project Id #</label><input type="text" value="<?php echo $projectid; ?>" >
+								<label>Status:</label><select id="new_status">
+														<option value="Design" selected>Design</option>
+														<option value="Pre-Construction">Pre-Construction</option>
+														<option value="Procurement">Procurement</option>
+														<option value="Construction">Construction</option>
+														<option value="Owner Occupancy">Owner Occupancy</option>
+														<option value="Closeout">Closeout</option>
+														</select>
+								<label>Start Date:</label><input type="date" id="new_start_date">
+								<label>Complete Date:</label><input type="date" id="new_complete_date">
+								<label>Time Needed:</label><input type="text" id="new_time_needed">
+								<label>Budget:</label><input type="number" id="new_budget">
+								<label>Actual Cost:</label><input type="number" id="new_actual_cost">								
+								<input type="button" class="createButtonPhase" value="Create Phase" onclick="create_phase();">
+								<input type="button" class="cancelButtonPhase" value="Cancel" onclick="">
+	
 						</div>
 					</div>
+
+
+					<input type="hidden" id="result">
+
 					<?php
 						$conn = new mysqli($servername, $username, $password, $dbname);  
 						$sql = "SELECT * FROM phases WHERE project_id ='$projectid' ";
@@ -133,25 +146,25 @@ $projectid = $_GET["projectid"];
 						while ($row=mysqli_fetch_array($result)) 
 						{ 
 							?><div id="projectBoxPhases"><?php
+							?><h2>Phase ID #<?php echo $row['phase_id']; ?></h2><?php
+							?><label>Project Id # </label><p id="project_id_val<?php echo $row['phase_id'];?>"><?php echo $row['project_id'];?></p><?php 
+							?><label>Status: </label><p id="status_val<?php echo $row['phase_id'];?>"><?php echo $row['status'];?></p><?php 
+							?><label>Start Date: </label><p id="start_date_val<?php echo $row['phase_id'];?>"><?php echo $row['start_date'];?></p><?php 
+							?><label>Complete Date: </label><p id="complete_date_val<?php echo $row['phase_id'];?>"><?php echo $row['complete_date'];?></p><?php 
+							?><label>Time Needed: </label><p id="time_needed_val<?php echo $row['phase_id'];?>"><?php echo $row['time_needed'];?></p><?php 
+							?><label>Budget: </label><p id="budget_val<?php echo $row['phase_id'];?>"><?php echo $row['budget'];?></p><?php 
+							?><label>Actual Cost: </label><p id="actual_cost_val<?php echo $row['phase_id'];?>"><?php echo $row['actual_cost'];?></p><?php 					
+							?>
+							<div class="action_btns_phases">
 
-							?>Phase ID<p><?php echo $row['phase_id']; ?></p><?php
-							?><label>Status</label><p><?php echo $row['status'];?></p><?php
-							?><label>Start Date</label><p><?php echo $row['start_date'];?></p><?php
-							?><label>Complete Date</label><p><?php echo $row['complete_date'];?></p><?php
-							?><label>Time Needed</label><p><?php echo $row['time_needed'];?></p><?php
-							?><label>Budget</label><p><?php echo $row['budget'];?></p><?php
-							?><label>Actual Cost</label><p><?php echo $row['actual_cost'];?></p><?php
-							
-							?>	
-							<div class="action_btns">
 
 							<?php	 
 
 							if($_SESSION['privilege'] == 'Company'){
 							?>
-							  <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_row('<?php echo $row['project_id'];?>');">
-						 	  <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['project_id'];?>" value="save" onclick="save_row('<?php echo $row['project_id'];?>');">
-						 	  <input type='button' style="display: none;" class="save_button" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_task('<?php echo $row['project_id'];?>');">
+							  <input type='button' class="edit_button_phases" id="edit_button<?php echo $row['phase_id'];?>" onclick="edit_phase('<?php echo $row['phase_id'];?>');">
+						 	  <input type='button' style="display: none;" class="save_button_phase" id="save_button<?php echo $row['phase_id'];?>" value="save" onclick="save_phase('<?php echo $row['phase_id'];?>');">
+						 	  <input type='button' style="display: none;" class="save_button_phase" id="cancel_button<?php echo $row['phase_id'];?>" value="Cancel" onclick="cancel_edit_phase('<?php echo $row['project_id'];?>');">
 
 							<?php 
 							} 

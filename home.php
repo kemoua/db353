@@ -54,11 +54,11 @@ $(document).ready(function(){
 	</header>
 
 		<ul id="menu">
-		        <li><a href="#">Home</a></li>
+		        <li><a href="home.php">Home</a></li>
 		        <li>
-		                <a href="#">Project</a>
+		                <a href="home.php">Project</a>
 		                <ul>
-		                        <li><a href="#">List</a>
+		                        <li><a href="home.php">List</a>
 								<ul>
 									<?php   
 										if($_SESSION['privilege'] == 'Company'){
@@ -99,7 +99,7 @@ $(document).ready(function(){
 		                </ul>
 		        </li>
 		        <li><a href="#">About</a></li>
-		        <li><a href="#">Contact</a></li>
+		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul> 
 
@@ -114,6 +114,9 @@ $(document).ready(function(){
 			</form>
 		</div>
 
+		<div id="search">
+			<input type="text" class="searchBar" name="search" placeholder="Search..">
+		</div>
 		<?php  
 				if($_SESSION['privilege'] == 'Company'){
 

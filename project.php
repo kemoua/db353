@@ -42,6 +42,8 @@ $result = $conn->query($sql);
 	<title>Project <?php echo $_GET["projectid"]; ?></title>
 </head>
 <body>
+<input type="text" name="search" placeholder="Search..">
+
 <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header> 
 	<div id="logo" onclick="window.location = 'home.php';"></div>
@@ -94,7 +96,7 @@ $result = $conn->query($sql);
 		                </ul>
 		        </li>
 		        <li><a href="#">About</a></li>
-		        <li><a href="#">Contact</a></li>
+		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
 

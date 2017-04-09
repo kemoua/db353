@@ -17,8 +17,8 @@ function edit_task(id)
    // var newOp = document.createElement("option");
    
 //create edit fields
-   document.getElementById("budget_val"+id).innerHTML='<input type="number" step="0.01" id="budget_text'+id+'" value="'+budget+'">';
-   document.getElementById("cost_val"+id).innerHTML='<input type="number" step="0.01" id="cost_text'+id+'" value="'+cost+'">';
+   document.getElementById("budget_val"+id).innerHTML='<input type="number" class="task_update" step="0.01" id="budget_text'+id+'" value="'+budget+'">';
+   document.getElementById("cost_val"+id).innerHTML='<input type="number" class="task_update" step="0.01" id="cost_text'+id+'" value="'+cost+'">';
    document.getElementById("status_val"+id).innerHTML="<select id='status_text"+id+"'></select>";
    var x = document.createElement("OPTION");
    x.setAttribute("value", "Pending");
@@ -41,15 +41,18 @@ function edit_task(id)
    x.appendChild(t);
    document.getElementById("status_text"+id).appendChild(x); 
 
-   document.getElementById("description_val"+id).innerHTML='<input type="text" id="description_text'+id+'" value="'+description+'">';
-   document.getElementById("time_needed_val"+id).innerHTML='<input type="text" id="time_needed_text'+id+'" value="'+time_needed+'">';
+   document.getElementById("description_val"+id).innerHTML='<input type="text" class="task_update" id="description_text'+id+'" value="'+description+'">';
+   document.getElementById("time_needed_val"+id).innerHTML='<input type="text" class="task_update" id="time_needed_text'+id+'" value="'+time_needed+'">';
 
-   document.getElementById("start_date_val"+id).innerHTML='<input type="date" id="start_date_text'+id+'" value="'+start_date+'">';
-   document.getElementById("complete_date_val"+id).innerHTML='<input type="date" id="complete_date_text'+id+'" value="'+complete_date+'">';
+   document.getElementById("start_date_val"+id).innerHTML='<input type="date" class="task_update" id="start_date_text'+id+'" value="'+start_date+'">';
+   document.getElementById("complete_date_val"+id).innerHTML='<input type="date" class="task_update" id="complete_date_text'+id+'" value="'+complete_date+'">';
 //display buttons
    document.getElementById("edit_button"+id).style.display="none";
    document.getElementById("save_button"+id).style.display="block";
-   document.getElementById("cancel_button"+id).style.display="block";
+   document.getElementById("cancel_button"+id).style.display="block"; 
+
+//hide delete button
+  document.getElementsByClassName('deleteTask')[0].style.display="none";
 }
 
 function cancel_edit_task(id){
