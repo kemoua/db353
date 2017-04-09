@@ -134,7 +134,7 @@ $projectid = $_GET["projectid"];
 						{ 
 							?><div id="projectBoxPhases"><?php
 
-							?><label>Phase ID</label><p><?php echo $row['phase_id']; ?></p><?php
+							?>Phase ID<p><?php echo $row['phase_id']; ?></p><?php
 							?><label>Status</label><p><?php echo $row['status'];?></p><?php
 							?><label>Start Date</label><p><?php echo $row['start_date'];?></p><?php
 							?><label>Complete Date</label><p><?php echo $row['complete_date'];?></p><?php

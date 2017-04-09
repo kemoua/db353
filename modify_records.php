@@ -72,7 +72,6 @@ while ($rowid=mysqli_fetch_array($projectid))
 $conn->close();
 $conn= new mysqli($servername, $username, $password, $dbname);
  $sql = "INSERT INTO projects VALUES($id,'$client_id','$status','$start_date',$complete_date,'$time_needed','$title','$type',$budget,'$actual_cost')";
- // $sql = "INSERT INTO projects(project_id,client_id,status,title,type) VALUES($id,$client_id,'$status','$title','$type')";
 
 
  if ($conn->query($sql) === TRUE) {
@@ -84,6 +83,8 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  exit();
 }
 
+/**************************************************************************************/
+
 if(isset($_POST['create_client']))
 {
  $username=$_POST['username_val'];
@@ -91,6 +92,76 @@ if(isset($_POST['create_client']))
  $password = sha1($password);
 
  $sql = "INSERT INTO users VALUES('$username','$password','Customer')";
+
+ if ($conn->query($sql) === TRUE) {
+ 	echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
+ $conn->close();
+ exit();
+}
+
+/**************************************************************************************/
+/*	TASKS  */
+/**************************************************************************************/
+if(isset($_POST['edit_task']))
+{
+ $task_id=$_POST['task_id'];
+ $project_id=$_POST['project_id_val'];
+ $phase_id=$_POST['phase_id_val'];
+ $description=$_POST['description_val'];
+ $status=$_POST['status_val'];
+ $start_date=$_POST['start_date_val'];
+ $complete_date=$_POST['complete_date_val'];
+ $time_needed=$_POST['time_needed_val'];
+ $budget=$_POST['budget_val'];
+ $cost=$_POST['cost_val'];
+
+ $start_date = !empty($start_date) ? "'$start_date'" : "NULL";
+ $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
+ $budget = !empty($budget) ? $budget : "NULL";
+ $cost = !empty($cost) ? $cost : "NULL";
+
+ $sql = "UPDATE tasks SET description='$description',status='$status',start_date=$start_date,complete_date=$complete_date,time_needed='$time_needed',budget=$budget,cost=$cost WHERE task_id='$task_id' AND phase_id='$phase_id' AND project_id ='$project_id'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
+
+if(isset($_POST['create_task']))
+{
+ $project_id=$_POST['project_id_val'];
+ $phase_id=$_POST['phase_id_val'];
+ $description=$_POST['description_val'];
+ $status=$_POST['status_val'];
+ $start_date=$_POST['start_date_val'];
+ $complete_date=$_POST['complete_date_val'];
+ $time_needed=$_POST['time_needed_val'];
+ $budget=$_POST['budget_val'];
+ $cost=$_POST['cost_val'];
+
+ $start_date = !empty($start_date) ? "'$start_date'" : "NULL";
+ $complete_date = !empty($complete_date) ? "'$complete_date'" : "NULL";
+ $budget = !empty($budget) ? $budget : "NULL";
+ $cost = !empty($cost) ? $cost : "NULL";
+
+$taskidsql =  "SELECT MAX(task_id)+1 AS max FROM tasks";
+$taskid = $conn->query($taskidsql);
+while ($rowid=mysqli_fetch_array($taskid)) 
+{ 
+	$id=$rowid['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "INSERT INTO tasks VALUES($id,'$project_id','$phase_id','$description','$status',$start_date,$complete_date,'$time_needed',$budget,$cost)";
+
 
  if ($conn->query($sql) === TRUE) {
  	echo "success";
