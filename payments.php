@@ -8,7 +8,7 @@ $password="root";
 $dbname="comp353";
 
 $projectid = $_GET["projectid"]; 
-$order = $_GET["order"];
+
 ?>
 
 <html>
@@ -88,22 +88,25 @@ $order = $_GET["order"];
 		</ul>
 		<div id="wrapper">
 			<div id="projectBox">
-			<h1>For Order# <?php echo $order;?></h1>
-				<table id="table_suborder<?php echo $row['sub_order_number'];?>">
-				<tr>
-					<th>Suborder #</th><th>Item</th><th>Quantity</th><th>Total Cost</th><th>Actual Cost</th>
-				</tr>
+				<table id="table_order">
+					<tr>
+						<th>Payment ID</th><th>Phase</th><th>Item</th><th>Amount Paid</th><th>Date of Payment</th>
+					</tr>
 			<?php  
 				$conn = new mysqli($servername, $username, $password, $dbname); 
-				$sql = "SELECT * FROM (SELECT payments.sub_order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.sub_order_number) as R INNER JOIN sub_orders ON sub_orders.sub_order_number = R.sub_order_number INNER JOIN items ON items.item_id=sub_orders.item_id WHERE sub_orders.order_number=$order ";
-				$result = $conn->query($sql);
+				if (isset($_GET["order"])) {
+					$order = $_GET["order"];
+					$sql = "SELECT * FROM payments INNER JOIN orders ON payments.order_number=orders.order_number INNER JOIN sub_orders ON payments.order_number=sub_orders.order_number INNER JOIN items ON  sub_orders.item_id=items.item_id INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE payments.order_number=$order";
+				}else{
+					$sql = "SELECT * FROM payments INNER JOIN sub_orders ON payments.sub_order_number=sub_orders.sub_order_number INNER JOIN items ON  sub_orders.item_id=items.item_id INNER JOIN orders ON payments.order_number=orders.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE payments.sub_order_number=$suborder";
+				}
 				// echo $sql;
+				$result = $conn->query($sql);
 				while ($row=mysqli_fetch_array($result)) 
 				{ 
 				?>
-	
 						<tr>
-							<th><?php echo $row['sub_order_number']; ?></a></th><th><?php echo $row['name'];?></th><th><?php echo $row['quantity'];?></th><th><?php echo $row['cost'];?></th><th><a href="payments.php?projectid=<?php echo $projectid; ?>&suborder=<?php echo $row['sub_order_number']; ?>"><?php echo $row['actual_cost']; ?></a></th>
+							<th><?php echo $row['payment_id']; ?></th><th><?php echo $row['status'];?></th><th><?php echo $row['name'];?></th><th><?php echo $row['amount_paid'];?></th><th><?php echo $row['date_of_payment'];?></th>
 						</tr>						
 					
 					<br>

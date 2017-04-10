@@ -89,18 +89,20 @@ $projectid = $_GET["projectid"];
 			<div id="projectBox">
 				<table id="table_order">
 					<tr>
-						<th>Order #</th><th>Phase ID</th<th>Total Cost</th><th>Date Order</th>
+						<th>Order #</th><th>Phase</th><th>Total Cost</th><th>Date Order</th><th>Actual Cost</th>
 					</tr>
 			<?php  
 				$conn = new mysqli($servername, $username, $password, $dbname); 
-				$sql = "SELECT * FROM orders WHERE project_id=$projectid";
+					$sql = "SELECT * FROM (SELECT payments.order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.order_number) as R INNER JOIN orders ON orders.order_number = R.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE orders.project_id=$projectid";
 				$result = $conn->query($sql);
+				// $sql = "SELECT orders.order_number, phases.status,orders.total_cost,orders.date_order,R.actual_cost FROM (SELECT payments.order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.order_number) as R INNER JOIN orders ON orders.order_number = R.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE orders.project_id=$projectid AND phases.project_id=$projectid";
+				// echo $sql;
 				while ($row=mysqli_fetch_array($result)) 
 				{ 
 				?>
 	
 						<tr>
-							<th><a href="suborders.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['order_number']; ?></a></th><th><?php echo $row['phase_id'];?></th><th><?php echo $row['total_cost'];?></th><th><?php echo $row['date_order'];?></th>
+							<th><a href="suborders.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['order_number']; ?></a></th><th><?php echo $row['status'];?></th><th><?php echo $row['total_cost'];?></th><th><?php echo $row['date_order'];?></th><th><a href="payments.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['actual_cost']; ?></a></th>
 						</tr>						
 					
 					<br>

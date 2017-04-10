@@ -31,7 +31,6 @@ $dbname="comp353";
 $search="";
 if(isset($_GET['search'])){  
 	$search = " WHERE title LIKE '%" .$_GET['search'] . "%'";   
-
 }
 
 if($_SESSION["privilege"]= "Company"){
@@ -87,16 +86,10 @@ $(document).ready(function(){
   }
    function search_func(str) {  
      window.location.href="home.php?search="+str; 
-     //display button BACK TO PROJECTS
-     document.getElementById('backButtonProjects').getElementsByTagName('a').style.display="block";  
 
     }
 
-   function disableProject(){ 
 
-   	//hide button BACK TO PROJECTS
-   	 document.getElementById('backButtonProjects').getElementsByTagName('a').style.display="none";  
-   	}
  
 </script>
 </head>
@@ -179,7 +172,6 @@ $(document).ready(function(){
 		</div>
 
 		<div id="search">
-			<a href="home.php" onclick="disableProject();" id="backButtonProjects">Back to projects</a>
 			<input type="text" id="searchBar" class="searchBar" onkeydown="key_down(event)" name="search" placeholder="Search.."> 
 		</div>
 
