@@ -103,12 +103,23 @@ $projectid = $_GET["projectid"];
 								<h2>Order #</h2>
 								<label>Project Id #</label><input type="text" id="new_project_id" value="<?php echo $projectid; ?>" disabled>
 								<label>Phase:</label><select id="new_phase">
-														<option value="Design" selected>Design</option>
-														<option value="Pre-Construction">Pre-Construction</option>
-														<option value="Procurement">Procurement</option>
-														<option value="Construction">Construction</option>
-														<option value="Owner Occupancy">Owner Occupancy</option>
-														<option value="Closeout">Closeout</option>
+									<?php  
+										$conn2 = new mysqli($servername, $username, $password, $dbname); 
+										$sql1 = "SELECT * FROM phases WHERE phases.project_id=$projectid";
+										$result2 = $conn2->query($sql1);
+											while ($row=mysqli_fetch_array($result2)) 
+											{ 
+									?>
+												<option type="hidden" value="<?php echo $row['phase_id']; ?>"><?php echo $row['status']; ?>
+												</option>
+											<?php
+										  	
+											}  
+											
+											?>
+									<?php
+										$conn2->close();
+									?>
 														</select>
 								<label>Date order:</label><input type="date" id="new_date_order">
 								<label>Date delivered:</label><input type="date" id="new_date_delivered">

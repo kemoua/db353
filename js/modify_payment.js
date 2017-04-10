@@ -78,7 +78,7 @@ function create_payments()
  var date_of_payment=document.getElementById("new_date_of_payment").value;
  var order_number=document.getElementById("theorder").value;
 // alert(project_id);
- // alert(order_number);
+alert(sub_order_number);
 // alert(amount_paid);
 // alert(date_of_payment);
 
@@ -103,8 +103,8 @@ function create_payments()
       // document.getElementById("result").value="Enter project";
     } else{
         if(response!=""){
-          document.getElementById("result").value=response;
-          window.location.href = "suborders.php?projectid="+project_id;
+          // document.getElementById("result").value=response;
+          window.location.href = "suborders.php?projectid="+project_id+"&order="+order_number;
         }
     }
    }

@@ -490,7 +490,7 @@ if(isset($_POST['edit_payments']))
 }
 
 
-if(isset($_POST['create_payments']))
+if(isset($_POST['create_payment']))
 {
  $sub_order_number=$_POST['sub_order_number_val'];
  $amount_paid=$_POST['amount_paid_val'];
@@ -507,9 +507,9 @@ while ($rowid2=mysqli_fetch_array($paymentid))
 { 
     $id=$rowid2['max'];
 }
-// $conn->close();
+$conn->close();
 
-// $conn= new mysqli($servername, $username, $password, $dbname);
+$conn= new mysqli($servername, $username, $password, $dbname);
  $sql = "INSERT INTO payments VALUES($id,'$sub_order_number',$order_number,$amount_paid,$date_of_payment)";
 
 

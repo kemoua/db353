@@ -102,24 +102,7 @@ $suborder = isset($_GET["suborder"])? $_GET["suborder"]:"";
 					<div id="newPhase">
 						<div id="projectBoxPhases">
 								<h2>Payment #</h2>
-								<label>SubOrder #</label><select id="new_sub_order_number">
-									<?php  
-										$conn2 = new mysqli($servername, $username, $password, $dbname); 
-										$sql1 = "SELECT * FROM sub_orders INNER JOIN orders ON sub_orders.order_number=orders.order_number WHERE orders.project_id = $projectid";
-										$result2 = $conn2->query($sql1);
-											while ($row=mysqli_fetch_array($result2)) 
-											{ 
-									?>
-												<option value="<?php echo $row['sub_order_number']; ?>"><?php echo $row['sub_order_number'];?></option>
-											<?php
-										  	
-											}  
-											
-											?>
-									<?php
-										$conn2->close();
-									?>
-														</select>
+								<label>SubOrder #</label><input id="new_sub_order_number" value="<?php echo $suborder;?>" disabled>
 								<label>Amount paid:</label><input type="number" id="new_amount_paid">	
 								<label>Date of payment:</label><input type="date" id="new_date_of_payment">
 							
