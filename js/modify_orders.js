@@ -44,8 +44,8 @@ function edit_billing(id)
    
 //display buttons
    document.getElementById("edit_butt_billing"+id).style.display="none";
-   document.getElementById("save_butt_billing"+id).style.display="block";
-   document.getElementById("cancel_butt_billing"+id).style.display="block";
+   document.getElementById("save_button_billing"+id).style.display="block";
+   document.getElementById("cancel_button_billing"+id).style.display="block";
    document.getElementById("delete_butt_billing"+id).style.display="none";
 }
 
