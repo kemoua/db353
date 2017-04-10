@@ -2,10 +2,7 @@
 session_start();
 
 
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
 $projectid = $_GET["projectid"]; 
 ?>
@@ -82,7 +79,7 @@ $projectid = $_GET["projectid"];
 		                        <?php }?>	
 		                </ul>
 		        </li>
-		        <li><a href="about.php">About</a></li>
+		        
 		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
@@ -110,7 +107,7 @@ $projectid = $_GET["projectid"];
 					<div id="newPhase">
 						<div id="projectBoxPhases">
 								<h2>Phase ID #</h2>
-								<label>Project Id #</label><input type="text" id="new_project_id" value="<?php echo $projectid; ?>" >
+								<label>Project Id #</label><input type="text" id="new_project_id" value="<?php echo $projectid; ?>" disabled>
 								<label>Status:</label><select id="new_status">
 														<option value="Design" selected>Design</option>
 														<option value="Pre-Construction">Pre-Construction</option>
@@ -125,7 +122,7 @@ $projectid = $_GET["projectid"];
 								<label>Budget:</label><input type="number" id="new_budget">
 								<label>Actual Cost:</label><input type="number" id="new_actual_cost">								
 								<input type="button" class="createButtonPhase" value="Create Phase" onclick="create_phase();">
-								<input type="button" class="cancelButtonPhase" value="Cancel" onclick="">
+								<input type="button" class="cancelButtonPhase" value="Cancel" onclick="window.location.href = 'phases.php?projectid=<?php echo $projectid;?>';">
 	
 						</div>
 					</div>

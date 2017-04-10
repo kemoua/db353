@@ -2,10 +2,7 @@
 session_start();
 
 
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
 $projectid = $_GET["projectid"]; 
 ?>
@@ -82,7 +79,6 @@ $projectid = $_GET["projectid"];
 		                        <?php }?>
 		                </ul>
 		        </li>
-		        <li><a href="about.php">About</a></li>
 		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
@@ -118,7 +114,7 @@ $projectid = $_GET["projectid"];
 											while ($row=mysqli_fetch_array($result2)) 
 											{ 
 									?>
-												<option value="<?php echo $row['phase_id']; ?>"><?php echo $row['phase_id'];?></option>
+												<option value="<?php echo $row['phase_id']; ?>"><?php echo $row['status'];?></option>
 											<?php
 										  	
 											}  

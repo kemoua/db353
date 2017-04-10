@@ -60,6 +60,7 @@ function edit_project(id)
    document.getElementById("edit_button"+id).style.display="none";
    document.getElementById("save_button"+id).style.display="block";
    document.getElementById("cancel_button"+id).style.display="block";
+    document.getElementById("delete_button"+id).style.display="none";
 }
 
 function cancel_edit_project(id){

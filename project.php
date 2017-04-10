@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
-
+include 'config_server.php';
 $projectid = $_GET["projectid"];
 
 $conn = new mysqli($servername, $username, $password, $dbname); 
@@ -42,7 +38,7 @@ $result = $conn->query($sql);
 	<title>Project <?php echo $_GET["projectid"]; ?></title>
 </head>
 <body>
-<input type="text" name="search" placeholder="Search..">
+<input type="hidden" name="search" placeholder="Search..">
 
 <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header> 
@@ -95,7 +91,7 @@ $result = $conn->query($sql);
 		                        <?php }?>
 		                </ul>
 		        </li>
-		        <li><a href="about.php">About</a></li>
+		        
 		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
@@ -171,7 +167,7 @@ $result = $conn->query($sql);
 				<div class="action_btns_project"><?php 
 					if($_SESSION['privilege'] == 'Company'){
 				?> 
-				   <input type="button" class="deleteProject" onclick="delete_project('<?php echo $_GET['projectid'];?>');">
+				   <input type="button" id="delete_button<?php echo $row['project_id'];?>" class="deleteProject" onclick="delete_project('<?php echo $_GET['projectid'];?>');">
 				   <input type='button' class="edit_button" id="edit_button<?php echo $row['project_id'];?>" onclick="edit_project('<?php echo $row['project_id'];?>');">
 				   <input type='button' style="display: none;" class="save_button_2" id="save_button<?php echo $row['project_id'];?>" value="Save" onclick="save_project('<?php echo $row['project_id'];?>');">	
 				   <input type='button' style="display: none;" class="save_button_2" id="cancel_button<?php echo $row['project_id'];?>" value="Cancel" onclick="cancel_edit_project('<?php echo $row['project_id'];?>');">

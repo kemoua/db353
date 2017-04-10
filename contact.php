@@ -1,10 +1,7 @@
 <?php
 	session_start(); 
 
-	$servername="localhost";
-	$username="root";
-	$password="root";
-	$dbname="comp353";
+include 'config_server.php';
  
 ?>
 <html>
@@ -80,7 +77,6 @@
 		                        <?php }?>
 		                </ul>
 		        </li>
-		        <li><a href="about.php">About</a></li>
 		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
@@ -95,7 +91,7 @@
 
 					If you are having technical trouble with the website, please contact our customer service at 1-800-123-4543.
 					<div id="formContact">
-					 <form action="/action_page.php">
+					 <form action="home.php">
 
 					    <label for="fname">First Name</label>
 					    <input type="text" id="fname" name="firstname" placeholder="Your name..">

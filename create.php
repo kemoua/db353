@@ -1,12 +1,9 @@
 <?php
-	session_start();
+session_start();
  
-$serverid="localhost";
-$userid="root";
-$password="root";
-$dbid="comp353";
+include 'config_server.php';
 
- $conn = new mysqli($serverid, $userid, $password, $dbid);
+ $conn = new mysqli($servername, $username, $password, $dbname);
  $clientidsql =  "SELECT MAX(client_id)+1 AS max FROM clients";
  $clientid = $conn->query($clientidsql);
  while ($rowid=mysqli_fetch_array($clientid)) 
@@ -15,7 +12,7 @@ $dbid="comp353";
  }
  $conn->close();
 //query for admin
-$conn = new mysqli($serverid, $userid, $password, $dbid); 
+$conn = new mysqli($servername, $username, $password, $dbname); 
 $sql = "SELECT * FROM projects";
 $result = $conn->query($sql);
 
@@ -84,7 +81,7 @@ $(document).ready(function(){
 											?>
 									<?php
 										$conn->close();
-										$conn = new mysqli($serverid, $userid, $password, $dbid); 
+										$conn = new mysqli($servername, $username, $password, $dbname); 
 										$sql = "SELECT * FROM projects";
 										$result = $conn->query($sql);
 										//query for users with no admin privileges
@@ -103,7 +100,6 @@ $(document).ready(function(){
 		                        
 		                </ul>
 		        </li>
-		        <li><a href="#">About</a></li>
 		        <li><a href="#">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>

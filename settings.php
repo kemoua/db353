@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
 $projectid = $_GET["projectid"]; 
 ?>
@@ -62,7 +58,6 @@ $projectid = $_GET["projectid"];
 		                        <li><a href="#">Create</a></li>
 		                </ul>
 		        </li>
-		        <li><a href="#">About</a></li>
 		        <li><a href="#">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul>

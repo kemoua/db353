@@ -1,8 +1,5 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
   
 if(isset($_POST['result'])){
 

@@ -1,8 +1,5 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

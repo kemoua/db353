@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
 $projectid = $_GET["projectid"]; 
 ?>

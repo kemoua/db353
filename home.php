@@ -1,10 +1,7 @@
 <?php
 	session_start(); 
 
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="comp353";
+include 'config_server.php';
 
  $noSearch =true;
  $title="";
@@ -155,7 +152,7 @@ $(document).ready(function(){
 		                        <?php }?>	
 		                </ul>
 		        </li>
-		        <li><a href="about.php">About</a></li>
+		        
 		        <li><a href="contact.php">Contact</a></li>
 		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
