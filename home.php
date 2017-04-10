@@ -6,7 +6,7 @@ $username="root";
 $password="root";
 $dbname="comp353";
 
-
+ $noSearch =true;
  $title="";
  $start_date="";
   
@@ -28,17 +28,33 @@ $dbname="comp353";
  	}
  }
 
-//query for admin
-$conn = new mysqli($servername, $username, $password, $dbname); 
-$sql = "SELECT * FROM projects" . $status . $title . $start_date;
-$result = $conn->query($sql);
+$search="";
+if(isset($_GET['search'])){  
+	$search = " WHERE title LIKE '%" .$_GET['search'] . "%'";   
 
+}
+
+if($_SESSION["privilege"]= "Company"){
+$conn = new mysqli($servername, $username, $password, $dbname); 
+$sql = "SELECT * FROM projects" . $status . $title . $start_date . $search;
+$result = $conn->query($sql); 
+
+$num_rows = $result->num_rows;
+
+if($num_rows == 0){
+  $sql = "SELECT * FROM projects" . $status . $title . $start_date ;
+  $result = $conn->query($sql); 
+}
+
+
+}
+else{
 
 //query for users with no admin privileges
 $user = $_SESSION['user'];
 $sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' " . $status . $title . $start_date;
 $resultClient = $conn->query($sql2);
-
+}
 ?>
 
 <html>
@@ -61,12 +77,33 @@ $(document).ready(function(){
         return false; 
     }); 
 });
+
+ 
+  function key_down(e) {
+  	var input = document.getElementById("searchBar").value;
+    if(e.keyCode === 13 && input.length != 0) { 
+      search_func(input);
+    }
+  }
+   function search_func(str) {  
+     window.location.href="home.php?search="+str; 
+     //display button BACK TO PROJECTS
+     document.getElementById('backButtonProjects').getElementsByTagName('a').style.display="block";  
+
+    }
+
+   function disableProject(){ 
+
+   	//hide button BACK TO PROJECTS
+   	 document.getElementById('backButtonProjects').getElementsByTagName('a').style.display="none";  
+   	}
+ 
 </script>
 </head>
-<body>
+<body> 
 <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
 	<header>
-		<div id="logo" ></div>
+		<div id="logo" onclick="window.location='home.php' " ></div>
 	</header>
 
 		<ul id="menu">
@@ -76,7 +113,7 @@ $(document).ready(function(){
 		                <ul>
 		                        <li><a href="home.php">List</a>
 								<ul>
-									<?php   
+									<?php    
 										if($_SESSION['privilege'] == 'Company'){
 											while ($row=mysqli_fetch_array($result)) 
 											{ 
@@ -97,12 +134,23 @@ $(document).ready(function(){
 											?>
 									<?php
 										$conn->close();
+
+										if($_SESSION["privilege"] == "Company"){
 										$conn = new mysqli($servername, $username, $password, $dbname); 
-										$sql = "SELECT * FROM projects" . $status . $title . $start_date;
-										$result = $conn->query($sql);
+										$sql = "SELECT * FROM projects" . $status . $title . $start_date .$search;
+										$result = $conn->query($sql); 
+
+										if($num_rows == 0){
+										  $sql = "SELECT * FROM projects" ;
+										  $result = $conn->query($sql); 
+										  $noResult = true;
+										}
+
+										}
 										//query for users with no admin privileges
+
 										$user = $_SESSION['user'];
-										$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' " . $status . $title . $start_date;
+										$sql2 = "SELECT * FROM projects,clients WHERE projects.client_id = clients.client_id AND clients.username ='$user' " . $status . $title . $start_date .$search;
 										$resultClient = $conn->query($sql2);
 									?> 
 
@@ -131,20 +179,27 @@ $(document).ready(function(){
 		</div>
 
 		<div id="search">
-			<input type="text" class="searchBar" name="search" placeholder="Search..">
+			<a href="home.php" onclick="disableProject();" id="backButtonProjects">Back to projects</a>
+			<input type="text" id="searchBar" class="searchBar" onkeydown="key_down(event)" name="search" placeholder="Search.."> 
 		</div>
-		<?php  
+
+		<?php   
 				if($_SESSION['privilege'] == 'Company'){
+
+
+					if(isset($noResult)){
+						?><div id="messageResult"><h2>Sorry no results have been found.</h2></div><?php
+					}
 
 					while ($row=mysqli_fetch_array($result)) 
 					{ 
 
 					?>
 					<div id="projectBox">
-
 					<?php
-
 					?><h1><?php echo strtoupper($row['title']);?></h1><?php
+
+
 					?><div class="mainPic"><?php
 					$file = 'images/project'. $row['project_id']. '/main.jpg';
 
@@ -154,6 +209,7 @@ $(document).ready(function(){
 					echo '<img src="'. $file. '"/>';
 					?></div><?php
 			 		?><div id="content">
+
 			 			<?php
 							?><p><b>Project#:</b> <?php echo $row['project_id'];?></p><?php 
 					 		?><p><b>Actual Cost:</b> <?php echo $row['actual_cost'];?>$</p><?php 
@@ -175,8 +231,12 @@ $(document).ready(function(){
 					while ($rowClient=mysqli_fetch_array($resultClient)) 
 					{ 
 
+
+
 					?>
+
 					<div id="projectBox">
+
 
 					<?php
 
@@ -204,10 +264,10 @@ $(document).ready(function(){
 
 					?>
 					</div>
+
 					<?php
-			  	 	
+			  	 	}
 					}  
-				}
 			?>
 	</div>
 	<?php

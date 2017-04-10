@@ -112,6 +112,13 @@ header button{
 #projectBoxCreate h1{
     background:darkgrey;
 }
+#messageResult h2{  
+    clear: both;
+    text-align: center;
+    margin-top:30px;
+    margin-bottom: -40px; 
+    background-color: grey;
+}
 #clientBoxCreate{
     padding: 30px;
     margin: 40 auto;
@@ -206,6 +213,9 @@ header button{
 #content label{
     font-weight: 800;
     font-size: 22px
+}
+#backButtonProjects{
+    display: block;
 }
 .infosButton{ 
     position: relative;
@@ -739,12 +749,20 @@ header button{
     background-repeat: no-repeat;
 };  
 #search{  
-    width: 200px;
+    width: 1000px;
+    height: 100px;
 } 
-.searchBar{
-    position: relative;
-    right: -400px;
-    top:20px;
+#search a{  
+    float: left;
+    top: 40px; 
+    font-size: 25px; 
+    color: red;
+}
+#search a:visited{
+    color:none; 
+}
+.searchBar{  
+    float: right;
     height: 35px; 
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -753,8 +771,7 @@ header button{
     background-color: white;
     background-image: url('../images/search.png'); 
     background-position: 10px 0px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px; 
+    background-repeat: no-repeat; 
 }     
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
 ol, ul { list-style: none; }
