@@ -892,6 +892,28 @@ table th{
     border-radius: 25px;  
     text-align: center; 
 }
+.cancel_button_sub{
+     position: relative;
+    top:400px;
+    display: none;
+     width: 300px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background-color: darkgrey;
+    border-radius: 25px;  
+    text-align: center;    
+}
+.save_button_sub{
+     position: relative;
+    top:400px;
+    display: none;
+     width: 300px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background-color: darkgrey;
+    border-radius: 25px;  
+    text-align: center;    
+}
 .save_button_2{
     width: 300px;
     margin-bottom: 10px;

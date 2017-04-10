@@ -399,7 +399,7 @@ if(isset($_POST['delete_order']))
 /**************************************************************************************/
 
 if(isset($_POST['edit_suborders']))
-{
+{ 
  $sub_order_number=$_POST['sub_order_number_val'];
  $cost=$_POST['cost_val'];
  $quantity=$_POST['quantity_val'];
@@ -408,8 +408,7 @@ if(isset($_POST['edit_suborders']))
  $quantity = !empty($quantity) ? $quantity : "NULL";
 
  $sql = "UPDATE sub_orders SET cost=$cost,quantity=$quantity WHERE sub_order_number='$sub_order_number'";
-
- if ($conn->query($sql) === TRUE) {
+  if ($conn->query($sql) === TRUE) {
     echo "success";
  } else {
     echo "error" . $conn->error;

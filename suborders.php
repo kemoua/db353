@@ -168,14 +168,14 @@ $order = $_GET["order"];
 							?>
 							<th><input type='button' id="delete_butt_billing<?php echo $row['sub_order_number'];?>" class="delete_butt_billing" value ="" onclick="delete_suborders(<?php echo $row['sub_order_number'];?>, <?php echo $order; ?> );"></th>
 							<th><input type='button' class="edit_butt_billing1" id="edit_butt_billing<?php echo $row['sub_order_number'];?>" value="" onclick="edit_suborders(<?php echo $row['sub_order_number'];?>);"></th>
-							<th><input type='button' style="display: none;" class="save_button" id="save_button_billing<?php echo $row['sub_order_number'];?>" value="save" onclick="save_suborders(<?php echo $row['sub_order_number'];?>);"></th>
-							<th><input type='button' style="display: none;" class="save_button" id="cancel_button_billing<?php echo $row['sub_order_number'];?>" value="Cancel" onclick="cancel_edit_suborders(<?php echo $projectid;?>);"></th>						 	  
+					 	  
 							<?php
 							} 
 							?>
 
 						</tr>						
-					
+							<input type='button' style="display: none;" class="save_button_sub" id="save_button_billing<?php echo $row['sub_order_number'];?>" value="save" onclick="save_suborders(<?php echo $row['sub_order_number'];?> , <?php echo $order; ?> );">
+							<input type='button' style="display: none;" class="cancel_button_sub" id="cancel_button_billing<?php echo $row['sub_order_number'];?>" value="Cancel" onclick="cancel_edit_suborders(<?php echo $projectid;?>);">	
 					<br>
 				<?php
 

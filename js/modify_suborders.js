@@ -11,8 +11,8 @@ function edit_suborders(id)
    
 //display buttons
    document.getElementById("edit_butt_billing"+id).style.display="none";
-   document.getElementById("save_butt_billing"+id).style.display="block";
-   document.getElementById("cancel_butt_billing"+id).style.display="block";
+   document.getElementById("save_button_billing"+id).style.display="block";
+   document.getElementById("cancel_button_billing"+id).style.display="block";
    document.getElementById("delete_butt_billing"+id).style.display="none";
 }
 
@@ -20,10 +20,13 @@ function cancel_edit_suborders(id){
   window.location.href = "suborders.php?projectid="+id;
 }
 
-function save_suborders(id)
+function save_suborders(id,order)
 {
+ 
 var quantity=document.getElementById("quantity_text"+id).value;
 var cost = document.getElementById("cost_text"+id).value;
+  var project_id=document.getElementById("theprojectid").value;
+
 
  $.ajax
  ({
@@ -35,11 +38,10 @@ var cost = document.getElementById("cost_text"+id).value;
    cost_val:cost,
    quantity_val:quantity
   },
-  success:function(response) {
-    // document.getElementById("result").value=response;
+  success:function(response) { 
    if(response=="success")
-   {
-    window.location.href = "suborders.php?projectid="+project_id;
+   { 
+    window.location.href = "suborders.php?projectid="+project_id+"&order="+order;
    }
   }
  });
