@@ -78,7 +78,7 @@ function create_payments()
  var date_of_payment=document.getElementById("new_date_of_payment").value;
  var order_number=document.getElementById("theorder").value;
 // alert(project_id);
-alert(sub_order_number);
+// alert(sub_order_number);
 // alert(amount_paid);
 // alert(date_of_payment);
 

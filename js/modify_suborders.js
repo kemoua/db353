@@ -75,20 +75,12 @@ function delete_suborders(id,order_id)
 
 function create_suborders()
 {
+  var project_id=document.getElementById("theprojectid").value;
  var order_number=document.getElementById("theorder").value;
  var cost=document.getElementById("new_cost").value;
  var quantity=document.getElementById("new_quantity").value;
  var item_id=document.getElementById("new_Item").value;
  
- // alert(client_id);
- // alert(status);
- // alert(start_date);
- // alert(complete_date);
- // alert(time_needed);
- // alert(title);
- // alert(type);
- // alert(budget);
- // alert(actual_cost);
 
 
  if(confirm("Confirm SubOrder?")){
@@ -112,7 +104,7 @@ function create_suborders()
     } else{
         if(response!=""){
           // document.getElementById("result").value=response;
-          window.location.href = "suborders.php?projectid="+project_id;
+          window.location.href = "suborders.php?projectid="+project_id+"&order="+order_number;
         }
     }
    }

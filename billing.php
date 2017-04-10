@@ -90,7 +90,7 @@ $projectid = $_GET["projectid"];
 		</script>
 		<div id="wrapper">
 			<h1>Billing Section for project: <?php echo $projectid;?></h1>
-		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80"></a> 
+		<a class='back' href="project.php?projectid=<?php echo $projectid;?>"><img border="0" src="images/arrow.png" width="80" height="80"></a> 
 				<?php  
 			if($_SESSION['privilege'] == 'Company'){
 			?><a class='add' href="javascript:displayBox();"><img border="0" src="images/add.png" width="80" height="80">

@@ -119,17 +119,11 @@ function create_billing()
  var date_order=document.getElementById("new_date_order").value;
  var date_delivered=document.getElementById("new_date_delivered").value;
  var total_cost=document.getElementById("new_total_cost").value;
- 
- // alert(client_id);
- // alert(status);
- // alert(start_date);
- // alert(complete_date);
- // alert(time_needed);
- // alert(title);
- // alert(type);
- // alert(budget);
- // alert(actual_cost);
-
+ // alert(project_id);
+ alert(phase);
+ // alert(date_order);
+ // alert(date_delivered);
+ // alert(total_cost);
 
  if(confirm("Confirm Order?")){
  $.ajax

@@ -93,7 +93,7 @@ $order = $_GET["order"];
 		<div id="wrapper">
 			<h1>SubOrder Section for project: <?php echo $projectid;?></h1>
 
-		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80"></a> 
+		<a class='back' href="billing.php?projectid=<?php echo $projectid;?>"><img border="0" src="images/arrow.png" width="80" height="80"></a> 
 				<?php  
 			if($_SESSION['privilege'] == 'Company'){
 			?><a class='add' href="javascript:displayBox();"><img border="0" src="images/add.png" width="80" height="80">
@@ -127,7 +127,7 @@ $order = $_GET["order"];
 								<label>Cost:</label><input type="number" id="new_cost">	
 								<label>Quantity:</label><input type="number" id="new_quantity">
 							
-								<input type="button" class="createButtonPhase" value="Create Order" onclick="create_billing();">
+								<input type="button" class="createButtonPhase" value="Create Order" onclick="create_suborders();">
 								<input type="button" class="cancelButtonPhase" value="Cancel" onclick="window.location.href = 'suborders.php?projectid=<?php echo $projectid;?>&order=<?php echo $order;?>';">
 	
 						</div>
@@ -145,11 +145,13 @@ $order = $_GET["order"];
 				</tr>
 			<?php  
 				$conn = new mysqli($servername, $username, $password, $dbname); 
+
 				$sql = "SELECT * FROM (SELECT payments.sub_order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.sub_order_number) as R INNER JOIN sub_orders ON sub_orders.sub_order_number = R.sub_order_number INNER JOIN items ON items.item_id=sub_orders.item_id WHERE sub_orders.order_number=$order ";
+				// echo $sql;
 				$result = $conn->query($sql);
 						$num_rows = $result->num_rows;
 
-						if($num_rows === 0){
+						if($num_rows == 0){
 							?><div id="projectBoxBillings">No SubOrders have been found for this project.</div><?php
 						}				
 				while ($row=mysqli_fetch_array($result)) 

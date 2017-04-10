@@ -90,7 +90,7 @@ $suborder = isset($_GET["suborder"])? $_GET["suborder"]:"";
 		<div id="wrapper">
 			<h1>Billing Section for project: <?php echo $projectid;?></h1>
 
-		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80">
+		<a class='back' href="billing.php?projectid=<?php echo $projectid;?>"><img border="0" src="images/arrow.png" width="80" height="80">
 					</a> 
 				<?php  
 			if($_SESSION['privilege'] == 'Company' && isset($_GET['suborder'])){
