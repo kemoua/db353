@@ -84,11 +84,12 @@ $projectid = $_GET["projectid"];
 		</ul>
 				<script>
 			function displayBox() {
-			    div = document.getElementById('newPhase');
+			    div = document.getElementById('newProjectBilling');
 			    div.style.display = "block";
 			}
 		</script>
 		<div id="wrapper">
+			<h1>Billing Section for project: <?php echo $projectid;?></h1>
 		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80"></a> 
 				<?php  
 			if($_SESSION['privilege'] == 'Company'){
@@ -97,8 +98,8 @@ $projectid = $_GET["projectid"];
 			}
 			?>
 
-					<div id="newPhase">
-						<div id="projectBoxPhases">
+					<div id="newBilling">
+						<div id="newProjectBilling">
 								<h2>Order #</h2>
 								<label>Project Id #</label><input type="text" id="new_project_id" value="<?php echo $projectid; ?>" disabled>
 								<label>Phase:</label><select id="new_phase">
@@ -146,12 +147,12 @@ $projectid = $_GET["projectid"];
 							<th><p id="total_cost_val<?php echo $row['order_number'];?>"><?php echo $row['total_cost'];?></p></th>
 							<th><p id="date_order_val<?php echo $row['order_number'];?>"><?php echo $row['date_order'];?></p></th>
 							<th><a href="payments.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['actual_cost']; ?></a></th>
-							
+
 							<?php
 							if($_SESSION['privilege'] == 'Company'){
 							?>
-							<th><input type='button' id="delete_butt_billing<?php echo $row['order_number'];?>" class="deleteTask" value ="" onclick="delete_billing(<?php echo $row['order_number'];?>);"></th>
-							<th><input type='button' class="edit_button" id="edit_butt_billing<?php echo $row['order_number'];?>" value="" onclick="edit_billing(<?php echo $row['order_number'];?>);"></th>
+							<th><input type='button' id="delete_butt_billing<?php echo $row['order_number'];?>" class="delete_butt_billing" value ="" onclick="delete_billing(<?php echo $row['order_number'];?>);"></th>
+							<th><input type='button' class="edit_butt_billing1" id="edit_butt_billing<?php echo $row['order_number'];?>" value="" onclick="edit_billing(<?php echo $row['order_number'];?>);"></th>
 							<th><input type='button' style="display: none;" class="save_button" id="save_button_billing<?php echo $row['order_number'];?>" value="save" onclick="save_billing(<?php echo $row['order_number'];?>);"></th>
 							<th><input type='button' style="display: none;" class="save_button" id="cancel_button_billing<?php echo $row['order_number'];?>" value="Cancel" onclick="cancel_edit_billing(<?php echo $projectid;?>);"></th>						 	  
 							<?php
