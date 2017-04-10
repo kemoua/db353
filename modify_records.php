@@ -303,3 +303,93 @@ if(isset($_POST['editPhone'])){
  $conn->close();
  exit();
 }
+
+
+/**************************************************************************************/
+/*  ORDERS  */
+/**************************************************************************************/
+
+if(isset($_POST['edit_billing']))
+{
+ $project_id=$_POST['project_id_val'];
+ $order_number=$_POST['order_number_val'];
+ $status=$_POST['status_val'];
+ $total_cost=$_POST['total_cost_val'];
+ $date_order=$_POST['date_order_val'];
+
+ $date_order = !empty($date_order) ? "'$date_order'" : "NULL";
+ $total_cost = !empty($total_cost) ? $total_cost : "NULL";
+
+$phaseidsql =  "SELECT phase_id AS id FROM phases WHERE phases.status='$status' AND phases.project_id='$project_id'";
+$phaseid = $conn->query($phaseidsql);
+while ($rowid=mysqli_fetch_array($phaseid)) 
+{ 
+    $id=$rowid['id'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "UPDATE orders SET phase_id='$id',date_order=$date_order,total_cost=$total_cost WHERE order_number='$order_number'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
+
+if(isset($_POST['create_billing']))
+{
+ $project_id=$_POST['project_id_val'];
+ $status=$_POST['phase_val'];
+ $date_order=$_POST['date_order_val'];
+ $date_delivered=$_POST['date_delivered_val'];
+ $total_cost=$_POST['total_cost_val'];
+
+ $date_order = !empty($date_order) ? "'$date_order'" : "NULL";
+ $date_delivered = !empty($date_delivered) ? "'$date_delivered'" : "NULL";
+ $total_cost = !empty($total_cost) ? $total_cost : "NULL";
+
+$phaseidsql =  "SELECT phase_id AS id FROM phases WHERE phases.status='$status' AND phases.project_id='$project_id'";
+$phaseid = $conn->query($phaseidsql);
+while ($rowid=mysqli_fetch_array($phaseid)) 
+{ 
+    $phase_id=$rowid['id'];
+}
+$conn->close();
+
+$orderidsql =  "SELECT MAX(order_number)+1 AS max FROM orders";
+$orderid = $conn->query($orderidsql);
+while ($rowid2=mysqli_fetch_array($orderid)) 
+{ 
+    $id=$rowid2['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "INSERT INTO orders VALUES($id,'$phase_id','$project_id',$total_cost,$date_order,$date_delivered)";
+
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
+ $conn->close();
+ exit();
+}
+
+if(isset($_POST['delete_billing']))
+{
+ $order_number=$_POST['order_number'];
+ $sql = "DELETE FROM orders WHERE order_number = '$order_number'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
