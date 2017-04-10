@@ -194,7 +194,7 @@ function create_project()
 function create_client()
 {
  if(confirm("Confirm New Client?")){
- var client_id=document.getElementById("new_client_id").value; 
+ var client_id=document.getElementById("new_cclient_id").value; 
  var first_name=document.getElementById("new_first_name").value;
  var last_name=document.getElementById("new_last_name").value;
  var civic_number=document.getElementById("new_civic_number").value;

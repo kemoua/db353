@@ -8,17 +8,6 @@ $dbname="comp353";
 
 $clientid = $_SESSION["user"];
 
-
-$conn = new mysqli($servername, $username, $password, $dbname); 
-$sql = "SELECT * FROM clients WHERE username = '$clientid' ";
-$result = $conn->query($sql);
- 
-
-while ($row=mysqli_fetch_array($result)) 
-{
-	$clientname = $row["first_name"];
-	$clientlast = $row["last_name"];
-}
 ?>
 
 <html>
@@ -44,11 +33,12 @@ while ($row=mysqli_fetch_array($result))
 	<title>Project <?php echo $_GET["projectid"]; ?></title>
 </head>
 <body> 
+<input type="hidden" id="result" name="">
 <script>
 	function editMode(){
 		var input = document.getElementById("phone_number").value;
  
-		document.getElementById("phone_number").innerHTML = '<input type="text" step="0.01" id="editbut_input"  > '; 
+		document.getElementById("phone_number").innerHTML = '<input type="text" id="new_phone"> '; 
 		document.getElementById("phone_number").style.fontSize = "20px";
 
 		//hide button edit
@@ -58,17 +48,19 @@ while ($row=mysqli_fetch_array($result))
 
 	}
 	function editPhone(){
-		var input = document.getElementById("phone_number").value;
-
+		var input = document.getElementById("new_phone").value;
+		var user = '<?php echo $clientid;?>';
 		$.ajax
 		 ({
 		  type:'post',
 		  url:'modify_records.php',
 		  data:{
-		   phonenumber:input
+		  editPhone:'editPhone',
+		   phonenumber:input,
+		   username:user
 		  },
 		  success:function(response) {
-		    document.getElementById("result").value=response;
+		  	document.getElementById("result").value=response;
 		   if(response=="success")
 		   {
 		    window.location.href = "client.php";
@@ -139,7 +131,7 @@ while ($row=mysqli_fetch_array($result))
 
 	<div id="wrapper"> 
 		<div id="client_box">
-		<h1>Good to see you, <?php echo $clientname; ?> !</h1>
+		<h1>Your Informations:</h1>
 		<?php   
 
 			$conn = new mysqli($servername, $username, $password, $dbname); 
@@ -163,7 +155,7 @@ while ($row=mysqli_fetch_array($result))
 			if($_SESSION['privilege'] == 'Company'){
 			?>
 			  <input type='button' class="edit_button2" id="editbut" value="" onclick="editMode();">
-		 	  <input type='button' style="display: none;" class="save_button" id="save_button" value="save" onclick="window.location='client.php?phone=<?php echo $row['phone']; ?>';" />
+		 	  <input type='button' style="display: none;" class="save_button" id="save_button" value="save" onclick="editPhone()" />
 		   	  <input type='button' style="display: none;" class="save_button" id="cancel_button" value="Cancel" onclick="javascript:location.href='client.php'" >						 	  
 			<?php 
 			} 

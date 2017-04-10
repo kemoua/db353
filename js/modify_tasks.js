@@ -52,7 +52,7 @@ function edit_task(id)
    document.getElementById("cancel_button"+id).style.display="block"; 
 
 //hide delete button
-  document.getElementsByClassName('deleteTask')[0].style.display="none";
+  document.getElementById("delete_button"+id).style.display="none";
 }
 
 function cancel_edit_task(id){
@@ -103,29 +103,31 @@ function save_task(id)
  });
 }
 
-// function delete_project(id)
-// {
-//   if(confirm("Do you really want to delete this project?")){
-//  $.ajax
-//  ({
-//   type:'post',
-//   url:'modify_records.php',
-//   data:{
-//    delete_project:'delete_project',
-//    project_id:id,
-//   },
-//   success:function(response) {
-//    if(response=="success")
-//    {
-//     // var row=document.getElementById("row"+id);
-//     // row.parentNode.removeChild(row);
-//     window.location.href = "home.php";
-//    }
-//   }
+function delete_task(id)
+{
+  var project_id=document.getElementById("theprojectid").value; 
 
-//  });
-//  }
-// }
+  if(confirm("Do you really want to delete this task?")){
+ $.ajax
+ ({
+  type:'post',
+  url:'modify_records.php',
+  data:{
+   delete_task:'delete_task',
+   task_id:id,
+  },
+  success:function(response) {
+   if(response=="success")
+   {
+    // var row=document.getElementById("row"+id);
+    // row.parentNode.removeChild(row);
+    window.location.href = "tasks.php?projectid="+project_id;
+   }
+  }
+
+ });
+ }
+}
 
 function create_task()
 {

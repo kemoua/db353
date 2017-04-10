@@ -110,7 +110,7 @@ $projectid = $_GET["projectid"];
 					<div id="newPhase">
 						<div id="projectBoxPhases">
 								<h2>Phase ID #</h2>
-								<label>Project Id #</label><input type="text" value="<?php echo $projectid; ?>" >
+								<label>Project Id #</label><input type="text" id="new_project_id" value="<?php echo $projectid; ?>" >
 								<label>Status:</label><select id="new_status">
 														<option value="Design" selected>Design</option>
 														<option value="Pre-Construction">Pre-Construction</option>

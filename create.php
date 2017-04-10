@@ -115,7 +115,7 @@ $(document).ready(function(){
 		<div id="clientBoxCreate">
 			<h1>Client Creation</h1>
 			<div class="contentClient">
-				<label>Client ID: </label><input type="text" id="new_client_id" disabled value="<?php echo $id;?>"><br>
+				<label>Client ID: </label><input type="text" id="new_cclient_id" disabled value="<?php echo $id;?>"><br>
 				<label>First Name: </label><input type="text" id="new_first_name"><br>
 				<label>Last Name:</label><input type="text" id="new_last_name"><br>
 				<label>Civic #: </label><input type="text" id="new_civic_number"><br>
@@ -135,7 +135,7 @@ $(document).ready(function(){
 			<h1>Project Creation</h1>
 			<div class="contentClient">
 			<?php
-			$sql3 = "SELECT client_id FROM clients";
+			$sql3 = "SELECT client_id,username FROM clients";
 			$clientid = $conn->query($sql3);
 			?>
 				<label>Client ID: </label><select style="" id="new_client_id">
@@ -143,7 +143,7 @@ $(document).ready(function(){
 							while ($rowid=mysqli_fetch_array($clientid)) 
 							{ 
 							?>
-								<option value="<?php echo $rowid['client_id']; ?>"><?php echo $rowid['client_id']; ?></option>
+								<option value="<?php echo $rowid['client_id']; ?>"><?php echo $rowid['username']; ?></option>
 							<?php 
 							}
 							?>
@@ -166,7 +166,7 @@ $(document).ready(function(){
 						</select><br>
 				<label>Budget </label><input type="number" id="new_budget"><br>
 				<label>Actual Cost: </label><input type="number" id="new_actual_cost"><br> 
-				<input type="text" id="result" style="width: 500px;">
+				<input type="hidden" id="result" style="width: 500px;">
 
 				<input type="button" class="buttonClientCreate" value="Create Project" onclick="create_project();">
 

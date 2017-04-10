@@ -207,6 +207,20 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  exit();
 }
 
+if(isset($_POST['delete_task']))
+{
+ $task_id=$_POST['task_id'];
+ $sql = "DELETE FROM tasks WHERE task_id = '$task_id'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
 /**************************************************************************************/
 /*  PHASES  */
 /**************************************************************************************/
@@ -273,12 +287,17 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  exit();
 }
 
-if(isset($_POST['phone'])){
-    $user_name = $_SESSION["user"];
-    $phone = $_POST['phone'];
+
+
+/**************************************************************************************/
+/*  CLIENT ACCOUNT (ONLY PHONE)  */
+/**************************************************************************************/
+
+if(isset($_POST['editPhone'])){
+    $user_name = $_POST["username"];
+    $phone = $_POST['phonenumber'];
 
  $sql = "UPDATE clients SET phone='$phone' WHERE username ='$user_name' ";
-
  if ($conn->query($sql) === TRUE) {
     echo "success";
  } else {

@@ -141,7 +141,7 @@ $projectid = $_GET["projectid"];
 								<label>Budget</label><input type="number" id="new_budget">
 								<label>Cost</label><input type="number" id="new_cost">	 
 								<input type="button" class="createButtonTask" value="Create Task" onclick="create_task();">
-								<input type="button" class="cancelButtonTask" value="Cancel" onclick="">
+								<input type="button" class="cancelButtonTask" value="Cancel" onclick="window.location.href = 'tasks.php?projectid='+<?php echo $projectid;?>;">
 
 					</div>
 
@@ -179,7 +179,7 @@ $projectid = $_GET["projectid"];
 
 							if($_SESSION['privilege'] == 'Company'){
 							?>
-							  <input type='button' class="deleteTask" >
+							  <input type='button' id="delete_button<?php echo $row['task_id'];?>" class="deleteTask" onclick="delete_task('<?php echo $row['task_id'];?>');">
 							  <input type='button' class="edit_button" id="edit_button<?php echo $row['task_id'];?>" value="" onclick="edit_task('<?php echo $row['task_id'];?>');">
 						 	  <input type='button' style="display: none;" class="save_button" id="save_button<?php echo $row['task_id'];?>" value="save" onclick="save_task('<?php echo $row['task_id'];?>');">
 						   	  <input type='button' style="display: none;" class="save_button" id="cancel_button<?php echo $row['task_id'];?>" value="Cancel" onclick="cancel_edit_task('<?php echo $row['project_id'];?>');">						 	  
@@ -196,5 +196,6 @@ $projectid = $_GET["projectid"];
 
 
 					?>
+					<input type="hidden" id="theprojectid" value="<?php echo $projectid;?>">
 </body>
 </html>
