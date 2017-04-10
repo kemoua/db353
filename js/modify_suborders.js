@@ -45,8 +45,9 @@ var cost = document.getElementById("cost_text"+id).value;
  });
 }
 
-function delete_suborders(id)
-{
+function delete_suborders(id,order_id)
+{ 
+
   var project_id=document.getElementById("theprojectid").value;
   if(confirm("Do you really want to delete this Order?")){
  $.ajax
@@ -62,7 +63,7 @@ function delete_suborders(id)
    {
     // var row=document.getElementById("row"+id);
     // row.parentNode.removeChild(row);
-    window.location.href = "suborders.php?projectid="+project_id;
+    window.location.href = "suborders.php?projectid="+project_id+"&order="+order_id;
    }
   }
 

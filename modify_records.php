@@ -450,8 +450,9 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  exit();
 }
 
-if(isset($_POST['delete_suborders']))
+if(isset($_POST['delete_suborder']))
 {
+
  $sub_order_number=$_POST['sub_order_number'];
  $sql = "DELETE FROM sub_orders WHERE sub_order_number = '$sub_order_number'";
 

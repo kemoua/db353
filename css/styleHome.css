@@ -81,6 +81,7 @@ table th{
     width: 1000px
 }
 #projectBoxPayment{
+    height: 400px;
     clear: both;
     margin: 40 auto;  
     overflow: auto; 
