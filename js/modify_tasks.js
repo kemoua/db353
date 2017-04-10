@@ -47,11 +47,11 @@ function edit_task(id)
    document.getElementById("start_date_val"+id).innerHTML='<input type="date" class="task_update" id="start_date_text'+id+'" value="'+start_date+'">';
    document.getElementById("complete_date_val"+id).innerHTML='<input type="date" class="task_update" id="complete_date_text'+id+'" value="'+complete_date+'">';
 //display buttons
+
    document.getElementById("edit_button"+id).style.display="none";
    document.getElementById("save_button"+id).style.display="block";
    document.getElementById("cancel_button"+id).style.display="block"; 
 
-//hide delete button
   document.getElementById("delete_button"+id).style.display="none";
 }
 

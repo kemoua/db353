@@ -68,7 +68,7 @@ function cancel_edit_project(id){
 }
 
 function save_project(id)
-{
+{ 
  var actual_cost=document.getElementById("actual_cost_text"+id).value;
  var status=document.getElementById("status_text"+id).value;
  var start_date=document.getElementById("start_date_text"+id).value;
@@ -132,7 +132,7 @@ function delete_project(id)
 }
 
 function create_project()
-{
+{ 
  var client_id=document.getElementById("new_client_id").value;
  var status=document.getElementById("new_status").value;
  var start_date=document.getElementById("new_start_date").value;
