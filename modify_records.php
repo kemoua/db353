@@ -495,6 +495,7 @@ if(isset($_POST['create_payments']))
  $sub_order_number=$_POST['sub_order_number_val'];
  $amount_paid=$_POST['amount_paid_val'];
  $date_of_payment=$_POST['date_of_payment_val'];
+$order_number=$_POST['order_number_val'];
 
  $amount_paid = !empty($amount_paid) ? $amount_paid : "NULL";
  $quantity = !empty($quantity) ? $quantity : "NULL";
@@ -506,17 +507,9 @@ while ($rowid2=mysqli_fetch_array($paymentid))
 { 
     $id=$rowid2['max'];
 }
-$conn->close();
-$conn= new mysqli($servername, $username, $password, $dbname);
-$orderidsql =  "SELECT * FROM sub_orders WHERE sub_orders.sub_order_number='$sub_order_number'";
-$orderid = $conn->query($orderidsql);
-while ($rowid3=mysqli_fetch_array($orderid)) 
-{ 
-    $order_number=$rowid3['order_number'];
-}
-$conn->close();
+// $conn->close();
 
-$conn= new mysqli($servername, $username, $password, $dbname);
+// $conn= new mysqli($servername, $username, $password, $dbname);
  $sql = "INSERT INTO payments VALUES($id,'$sub_order_number',$order_number,$amount_paid,$date_of_payment)";
 
 
@@ -528,6 +521,7 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  $conn->close();
  exit();
 }
+
 
 if(isset($_POST['delete_payments']))
 {

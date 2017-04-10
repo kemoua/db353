@@ -175,5 +175,21 @@ $suborder = isset($_GET["suborder"])? $_GET["suborder"]:"";
 			</div>
 		</div>
 				<input type="hidden" id="theprojectid" value="<?php echo $projectid;?>">
+				<?php  
+										$conn2 = new mysqli($servername, $username, $password, $dbname); 
+										$sql1 = "SELECT * FROM sub_orders WHERE sub_orders.sub_order_number=$suborder";
+										$result2 = $conn2->query($sql1);
+											while ($row=mysqli_fetch_array($result2)) 
+											{ 
+									?>
+												<input type="hidden" id="theorder" value="<?php echo $row['order_number']; ?>">
+											<?php
+										  	
+											}  
+											
+											?>
+									<?php
+										$conn2->close();
+									?>
 </body>
 </html>

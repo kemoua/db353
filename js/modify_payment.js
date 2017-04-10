@@ -76,16 +76,11 @@ function create_payments()
  var sub_order_number=document.getElementById("new_sub_order_number").value;
  var amount_paid=document.getElementById("new_amount_paid").value;
  var date_of_payment=document.getElementById("new_date_of_payment").value;
-
- // alert(client_id);
- // alert(status);
- // alert(start_date);
- // alert(complete_date);
- // alert(time_needed);
- // alert(title);
- // alert(type);
- // alert(budget);
- // alert(actual_cost);
+ var order_number=document.getElementById("theorder").value;
+// alert(project_id);
+ // alert(order_number);
+// alert(amount_paid);
+// alert(date_of_payment);
 
 
  if(confirm("Confirm Payment?")){
@@ -97,7 +92,8 @@ function create_payments()
    create_payment:'create_payment',
    sub_order_number_val:sub_order_number,
    amount_paid_val:amount_paid,
-   date_of_payment_val:date_of_payment
+   date_of_payment_val:date_of_payment,
+   order_number_val:order_number
   },
   success:function(response) {
    if(response=="error1062"){
@@ -107,7 +103,7 @@ function create_payments()
       // document.getElementById("result").value="Enter project";
     } else{
         if(response!=""){
-          // document.getElementById("result").value=response;
+          document.getElementById("result").value=response;
           window.location.href = "suborders.php?projectid="+project_id;
         }
     }
