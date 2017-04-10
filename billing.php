@@ -77,14 +77,17 @@ $projectid = $_GET["projectid"];
 		                        	?><li><a href="create.php">Create</a></li>
 		                        <?php }?>
 		                </ul>
-		        </li>
-		        <li><a href="#">About</a></li>
+		        </li> 
 		        <li><a href="#">Contact</a></li>
+			    <li><a href="#">MY ACCOUNT</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
 		<div id="wrapper">
-			<div id="projectBox">
+		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80">
+					</a> 
+			<div id="projectBoxBilling">
 				<table id="table_order">
+					<h1>Orders</h1>
 					<tr>
 						<th>Order #</th><th>Phase</th><th>Total Cost</th><th>Date Order</th><th>Actual Cost</th>
 					</tr>
@@ -103,12 +106,35 @@ $projectid = $_GET["projectid"];
 	
 						<tr>
 							<th><a href="suborders.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['order_number']; ?></a></th><th><?php echo $row['status'];?></th><th><?php echo $row['total_cost'];?></th><th><?php echo $row['date_order'];?></th><th><a href="payments.php?projectid=<?php echo $projectid; ?>&order=<?php echo $row['order_number']; ?>"><?php echo $row['actual_cost']; ?></a></th>
+							
+							<?php
+							if($_SESSION['privilege'] == 'Company'){
+							?>
+							<th><input type='button' id="delete_butt_billing" value ="" class= onclick="delete_billing();"></th>
+							<th><input type='button' class="edit_butt_billing" id="edit_butt_billing<?php /*truc ici*/?>" value="" onclick="delete_billing();"></th>
+							<th><input type='button' style="display: none;" class="save_button_bill" id="save_button_billing" value="save" onclick="save_billing();"></th>
+							<th><input type='button' style="display: none;" class="save_button_bill" id="cancel_button_billing" value="Cancel" onclick="cancel_edit_billing();"></th>						 	  
+							<?php
+							} 
+							?>
+
 						</tr>						
 					
 					<br>
 				<?php
+
+				
+
+				?>
+							 
+							
+				<?php 
+					
 				}  
 				?>
+
+
+
 			<?php
 				$conn->close();
 			?>

@@ -83,10 +83,11 @@ $order = $_GET["order"];
 		        <li><a href="#">Contact</a></li>
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
-		<div id="wrapper">
-			<div id="projectBox">
+		<div id="wrapper">		
+			<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80"></a> 
+			<div id="projectBoxSub">
 			<h1>For Order# <?php echo $order;?></h1>
-				<table id="table_suborder<?php echo $row['sub_order_number'];?>">
+				<table class="suborderd" id="table_suborder<?php echo $row['sub_order_number'];?>">
 				<tr>
 					<th>Suborder #</th><th>Item</th><th>Quantity</th><th>Total Cost</th><th>Actual Cost</th>
 				</tr>
@@ -101,6 +102,16 @@ $order = $_GET["order"];
 	
 						<tr>
 							<th><?php echo $row['sub_order_number']; ?></a></th><th><?php echo $row['name'];?></th><th><?php echo $row['quantity'];?></th><th><?php echo $row['cost'];?></th><th><a href="payments.php?projectid=<?php echo $projectid; ?>&suborder=<?php echo $row['sub_order_number']; ?>"><?php echo $row['actual_cost']; ?></a></th>
+							<?php
+							if($_SESSION['privilege'] == 'Company'){
+							?>
+							<th><input type='button' id="delete_butt_sub" value ="" class= onclick="delete_billing();"></th>
+							<th><input type='button' class="edit_butt_sub" id="edit_butt_sub <?php /*truc ici*/?>" value="" onclick="delete_billing();"></th>
+							<th><input type='button' style="display: none;" class="save_button_sub" id="save_button_sub" value="save" onclick="save_order();"></th>
+							<th><input type='button' style="display: none;" class="save_button_sub" id="cancel_button_sub" value="Cancel" onclick="cancel_edit_billing();"></th>						 	  		
+
+						<?php } ?>
+
 						</tr>						
 					
 					<br>

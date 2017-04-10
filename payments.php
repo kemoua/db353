@@ -82,8 +82,10 @@ $projectid = $_GET["projectid"];
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
 		<div id="wrapper">
-			<div id="projectBox">
-				<table id="table_order">
+		<a class='back' href=""><img border="0" src="images/arrow.png" width="80" height="80">
+					</a> 
+			<div id="projectBoxPayment">
+				<table id="table_payment">
 					<tr>
 						<th>Payment ID</th><th>Phase</th><th>Item</th><th>Amount Paid</th><th>Date of Payment</th>
 					</tr>
@@ -103,6 +105,18 @@ $projectid = $_GET["projectid"];
 				?>
 						<tr>
 							<th><?php echo $row['payment_id']; ?></th><th><?php echo $row['status'];?></th><th><?php echo $row['name'];?></th><th><?php echo $row['amount_paid'];?></th><th><?php echo $row['date_of_payment'];?></th>
+						<?php
+							if($_SESSION['privilege'] == 'Company'){
+							?>
+							<th><input type='button' id="delete_payment" value ="" class= onclick="delete_billing();"></th>
+							<th><input type='button' class="edit_payment" id="edit_payment<?php /*truc ici*/?>" value="" onclick="delete_billing();"></th>
+							<th><input type='button' style="display: none;" class="save_button_payment" id="save_button_payment" value="save" onclick="save_payment();"></th>
+							<th><input type='button' style="display: none;" class="cancel_button_payment" id="cancel_button_payment" value="Cancel" onclick="cancel_edit_payment();"></th>						 	  
+							<?php
+							} 
+
+						?>					
+
 						</tr>						
 					
 					<br>
