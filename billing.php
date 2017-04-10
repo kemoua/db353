@@ -92,8 +92,11 @@ $projectid = $_GET["projectid"];
 				$conn = new mysqli($servername, $username, $password, $dbname); 
 					$sql = "SELECT * FROM (SELECT payments.order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.order_number) as R INNER JOIN orders ON orders.order_number = R.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE orders.project_id=$projectid";
 				$result = $conn->query($sql);
-				// $sql = "SELECT orders.order_number, phases.status,orders.total_cost,orders.date_order,R.actual_cost FROM (SELECT payments.order_number, SUM(payments.amount_paid) as actual_cost FROM payments GROUP BY payments.order_number) as R INNER JOIN orders ON orders.order_number = R.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE orders.project_id=$projectid AND phases.project_id=$projectid";
-				// echo $sql;
+						$num_rows = $result->num_rows;
+
+						if($num_rows === 0){
+							?><div id="projectBoxBillings">No Orders have been found for this project.</div><?php
+						}				
 				while ($row=mysqli_fetch_array($result)) 
 				{ 
 				?>
