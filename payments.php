@@ -98,6 +98,7 @@ $projectid = $_GET["projectid"];
 					$order = $_GET["order"];
 					$sql = "SELECT * FROM payments INNER JOIN orders ON payments.order_number=orders.order_number INNER JOIN sub_orders ON payments.order_number=sub_orders.order_number INNER JOIN items ON  sub_orders.item_id=items.item_id INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE payments.order_number=$order";
 				}else{
+					$suborder = $_GET["suborder"];
 					$sql = "SELECT * FROM payments INNER JOIN sub_orders ON payments.sub_order_number=sub_orders.sub_order_number INNER JOIN items ON  sub_orders.item_id=items.item_id INNER JOIN orders ON payments.order_number=orders.order_number INNER JOIN phases ON orders.phase_id = phases.phase_id WHERE payments.sub_order_number=$suborder";
 				}
 				// echo $sql;
