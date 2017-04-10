@@ -380,7 +380,7 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  exit();
 }
 
-if(isset($_POST['delete_billing']))
+if(isset($_POST['delete_order']))
 {
  $order_number=$_POST['order_number'];
  $sql = "DELETE FROM orders WHERE order_number = '$order_number'";
