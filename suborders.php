@@ -195,5 +195,6 @@ $order = $_GET["order"];
 			</div>
 		</div>
 		<input type="hidden" id="theprojectid" value="<?php echo $projectid;?>">
+		<input type="hidden" id="theorder" value="<?php echo $order;?>">
 </body>
 </html>

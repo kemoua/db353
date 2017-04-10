@@ -22,10 +22,8 @@ function cancel_edit_suborders(id){
 
 function save_suborders(id)
 {
-var status=document.getElementById("status_text"+id).value;
-var total_cost = document.getElementById("total_cost_text"+id).value;
-var date_order = document.getElementById("date_order_text"+id).value;
-var project_id=document.getElementById("theprojectid").value;
+var quantity=document.getElementById("quantity_text"+id).value;
+var cost = document.getElementById("cost_text"+id).value;
 
  $.ajax
  ({
@@ -33,22 +31,15 @@ var project_id=document.getElementById("theprojectid").value;
   url:'modify_records.php',
   data:{
    edit_suborders:'edit_suborders',
-   order_number_val:id,
-   total_cost_val:total_cost,
-   status_val:status,
-   date_order_val:date_order,
-   project_id_val:project_id
+   sub_order_number_val:id,
+   cost_val:cost,
+   quantity_val:quantity
   },
   success:function(response) {
     // document.getElementById("result").value=response;
    if(response=="success")
    {
     window.location.href = "suborders.php?projectid="+project_id;
-    // document.getElementById("actual_cost_val"+id).innerHTML=actual_cost;
-    // document.getElementById("status_val"+id).innerHTML=status;
-    // document.getElementById("start_date_val"+id).innerHTML=start_date;
-    // document.getElementById("edit_button"+id).style.display="block";
-    // document.getElementById("save_button"+id).style.display="none";
    }
   }
  });
@@ -63,8 +54,8 @@ function delete_suborders(id)
   type:'post',
   url:'modify_records.php',
   data:{
-   delete_order:'delete_order',
-   order_number:id
+   delete_suborder:'delete_suborder',
+   sub_order_number:id
   },
   success:function(response) {
    if(response=="success")
@@ -81,11 +72,10 @@ function delete_suborders(id)
 
 function create_suborders()
 {
- var project_id=document.getElementById("new_project_id").value;
- var phase=document.getElementById("new_phase").value;
- var date_order=document.getElementById("new_date_order").value;
- var date_delivered=document.getElementById("new_date_delivered").value;
- var total_cost=document.getElementById("new_total_cost").value;
+ var order_number=document.getElementById("theorder").value;
+ var cost=document.getElementById("new_cost").value;
+ var quantity=document.getElementById("new_quantity").value;
+ var item_id=document.getElementById("new_Item").value;
  
  // alert(client_id);
  // alert(status);
@@ -98,18 +88,17 @@ function create_suborders()
  // alert(actual_cost);
 
 
- if(confirm("Confirm Order?")){
+ if(confirm("Confirm SubOrder?")){
  $.ajax
  ({
   type:'post',
   url:'modify_records.php',
   data:{
-   create_order:'create_order',
-   project_id_val:project_id,
-   phase_val:phase,
-   date_order_val:date_order,
-   date_delivered_val:date_delivered,
-   total_cost_val:total_cost
+   create_suborder:'create_suborder',
+   order_number_val:order_number,
+   cost_val:cost,
+   quantity_val:quantity,
+   item_id_val:item_id
   },
   success:function(response) {
    if(response=="error1062"){

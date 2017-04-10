@@ -393,3 +393,73 @@ if(isset($_POST['delete_billing']))
  $conn->close();
  exit();
 }
+
+/**************************************************************************************/
+/*  SUBORDERS  */
+/**************************************************************************************/
+
+if(isset($_POST['edit_suborders']))
+{
+ $sub_order_number=$_POST['sub_order_number_val'];
+ $cost=$_POST['cost_val'];
+ $quantity=$_POST['quantity_val'];
+
+ $cost = !empty($cost) ? $cost : "NULL";
+ $quantity = !empty($quantity) ? $quantity : "NULL";
+
+ $sql = "UPDATE sub_orders SET cost=$cost,quantity=$quantity WHERE sub_order_number='$sub_order_number'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
+
+if(isset($_POST['create_suborders']))
+{
+ $order_number=$_POST['order_number_val'];
+ $cost=$_POST['cost_val'];
+ $quantity=$_POST['quantity_val'];
+ $item_id=$_POST['item_id_val'];
+
+ $cost = !empty($cost) ? $cost : "NULL";
+ $quantity = !empty($quantity) ? $quantity : "NULL";
+
+
+$orderidsql =  "SELECT MAX(sub_order_number)+1 AS max FROM sub_orders";
+$orderid = $conn->query($orderidsql);
+while ($rowid2=mysqli_fetch_array($orderid)) 
+{ 
+    $id=$rowid2['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "INSERT INTO orders VALUES($id,'$order_number',$total_cost,$quantity,'$item_id')";
+
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
+ $conn->close();
+ exit();
+}
+
+if(isset($_POST['delete_suborders']))
+{
+ $sub_order_number=$_POST['sub_order_number'];
+ $sql = "DELETE FROM sub_orders WHERE sub_order_number = '$sub_order_number'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
