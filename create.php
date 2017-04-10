@@ -105,6 +105,7 @@ $(document).ready(function(){
 		        </li>
 		        <li><a href="#">About</a></li>
 		        <li><a href="#">Contact</a></li>
+		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
 	
@@ -165,6 +166,8 @@ $(document).ready(function(){
 						</select><br>
 				<label>Budget </label><input type="number" id="new_budget"><br>
 				<label>Actual Cost: </label><input type="number" id="new_actual_cost"><br> 
+				<input type="text" id="result" style="width: 500px;">
+
 				<input type="button" class="buttonClientCreate" value="Create Project" onclick="create_project();">
 
 			</div>

@@ -272,3 +272,18 @@ $conn= new mysqli($servername, $username, $password, $dbname);
  $conn->close();
  exit();
 }
+
+if(isset($_POST['phone'])){
+    $user_name = $_SESSION["user"];
+    $phone = $_POST['phone'];
+
+ $sql = "UPDATE clients SET phone='$phone' WHERE username ='$user_name' ";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}

@@ -80,8 +80,9 @@
 		                        <?php }?>
 		                </ul>
 		        </li>
-		        <li><a href="#">About</a></li>
-		        <li><a href="Contact.php">Contact</a></li>
+		        <li><a href="about.php">About</a></li>
+		        <li><a href="contact.php">Contact</a></li>
+		        <li><a href="client.php">My Account</a></li> 
 		        <li><a href="index.php">Logout</a></li>
 		</ul>
 		<div ="wrapper">

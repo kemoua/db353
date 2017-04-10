@@ -153,19 +153,44 @@ header button{
     font-weight: 600;  
     width:500px;
     text-align: left;
-}  
+} 
+#client_box label{
+    font-weight: 600;
+    font-size: 25px;
+    display:inline-block;
+    width:400px; 
+    text-align: left;
+} 
+#client_box p{ 
+    font-size: 25px;
+    display: block;
+    float: right;
+    width: 400px;
+}
+#client_box h1{
+    background-color: darkgrey;
+}
 #contact_box h1{ 
     background-color: darkgrey;
  }
+
 #formContact{
     margin-top:50px;
 }
-#formContact label{  
+#formContact label{   
     text-align: left;
     width: 110px; 
     height: 25px;
 }
-
+#client_box{
+    padding: 30px;
+    margin: 40 auto;
+    background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(204,204,204,1) 0%,rgba(244,244,244,1) 100%,rgba(173,173,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    width: 1000px;  
+    border: 5px double  rgba(0,0,0,0.5);
+    overflow: auto;   
+}
 #contact_box{
     padding: 30px;
     margin: 40 auto;
@@ -649,6 +674,21 @@ header button{
     float: left;
     margin-left:-300px;
     margin-top: -40px;
+}
+#editbut_input{
+    width: 200px;
+    height: 25px;
+}
+.edit_button2{
+    margin-top:20px;
+    background:url('../images/edit_1.png');
+    background-repeat: no-repeat;
+    width: 129px;
+    height: 50px;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    float: right;
 }
 .createButtonTask{
     margin-top:20px;
