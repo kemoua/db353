@@ -463,3 +463,81 @@ if(isset($_POST['delete_suborders']))
  $conn->close();
  exit();
 }
+
+/**************************************************************************************/
+/*  PAYMENTS  */
+/**************************************************************************************/
+
+if(isset($_POST['edit_payments']))
+{
+ $sub_order_number=$_POST['sub_order_number_val'];
+ $cost=$_POST['cost_val'];
+ $quantity=$_POST['quantity_val'];
+
+ $cost = !empty($cost) ? $cost : "NULL";
+ $quantity = !empty($quantity) ? $quantity : "NULL";
+
+ $sql = "UPDATE payments SET amount_paid=$amount_paid WHERE payment_id='$payment_id'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
+
+
+if(isset($_POST['create_payments']))
+{
+ $sub_order_number=$_POST['sub_order_number_val'];
+ $amount_paid=$_POST['amount_paid_val'];
+ $date_of_payment=$_POST['date_of_payment_val'];
+
+ $amount_paid = !empty($amount_paid) ? $amount_paid : "NULL";
+ $quantity = !empty($quantity) ? $quantity : "NULL";
+ $date_of_payment = !empty($date_of_payment) ? "'$date_of_payment'" : "NULL";
+
+$paymentidsql =  "SELECT MAX(payment_id)+1 AS max FROM payments";
+$paymentid = $conn->query($paymentidsql);
+while ($rowid2=mysqli_fetch_array($paymentid)) 
+{ 
+    $id=$rowid2['max'];
+}
+$conn->close();
+$conn= new mysqli($servername, $username, $password, $dbname);
+$orderidsql =  "SELECT * FROM sub_orders WHERE sub_orders.sub_order_number='$sub_order_number'";
+$orderid = $conn->query($orderidsql);
+while ($rowid3=mysqli_fetch_array($orderid)) 
+{ 
+    $order_number=$rowid3['order_number'];
+}
+$conn->close();
+
+$conn= new mysqli($servername, $username, $password, $dbname);
+ $sql = "INSERT INTO payments VALUES($id,'$sub_order_number',$order_number,$amount_paid,$date_of_payment)";
+
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . mysqli_errno($conn);
+ } 
+ $conn->close();
+ exit();
+}
+
+if(isset($_POST['delete_payments']))
+{
+ $sub_order_number=$_POST['sub_order_number'];
+ $sql = "DELETE FROM payments WHERE payments_id = '$payments_id'";
+
+ if ($conn->query($sql) === TRUE) {
+    echo "success";
+ } else {
+    echo "error" . $conn->error;
+ }
+ $conn->close();
+ exit();
+}
